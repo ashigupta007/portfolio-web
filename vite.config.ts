@@ -8,3 +8,5 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
 });
+
+// https://api.vercel.com/v1/integrations/deploy/prj_RKA2GeNPrnEyujARBvLn4rnPfFZ9/rA4ZapxPxI

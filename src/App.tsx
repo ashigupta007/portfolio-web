@@ -787,7 +787,7 @@ function App() {
               >
                 {[
                   { icon: Github, label: "ashigupta007", href: "https://github.com/ashigupta007" },
-                  { icon: Linkedin, label: "ashish-gupta-dev", href: "https://www.linkedin.com/in/ashish-gupta-aa32bb129/" },
+                  { icon: Linkedin, label: "ashish-gupta-aa32bb129/", href: "https://www.linkedin.com/in/ashish-gupta-aa32bb129/" },
                   { icon: Mail, label: "love4css@gmail.com", href: "mailto:love4css@gmail.com" }
                 ].map((contact, index) => (
                   <motion.a 

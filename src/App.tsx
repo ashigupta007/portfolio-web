@@ -313,8 +313,11 @@ function App() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 animate={pulseVariants.animate}
+                onClick={() => window.open('https://calendly.com/love4css/coffee-style-interview-with-ashish', '_blank', 'noopener,noreferrer')}
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
+                <span
+                  className="relative z-10 flex items-center justify-center gap-2"
+                >
                   <Mail className="w-4 sm:w-5 h-4 sm:h-5" />
                   HIRE ME NOW
                 </span>
@@ -324,8 +327,9 @@ function App() {
                 className="group border-2 border-cyan-500/50 hover:border-cyan-400 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 hover:bg-cyan-500/10 w-full sm:w-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => window.open('https://drive.google.com/file/d/1AfLS11uXS83-4XrvbdsKsCph78X_gkxD/view?usp=drivesdk', '_blank', 'noopener,noreferrer')}
               >
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-2" >
                   <Download className="w-4 sm:w-5 h-4 sm:h-5" />
                   GET MY CV
                 </span>
@@ -734,6 +738,7 @@ function App() {
                   transition={{
                     boxShadow: { duration: 2, repeat: Infinity }
                   }}
+                  onClick={() => window.open('https://calendly.com/love4css/coffee-style-interview-with-ashish', '_blank', 'noopener,noreferrer')}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     <Mail className="w-5 sm:w-6 h-5 sm:h-6" />
@@ -757,9 +762,9 @@ function App() {
                 viewport={{ once: true }}
               >
                 {[
-                  { icon: Github, label: "ashish-codes", href: "#" },
-                  { icon: Linkedin, label: "ashish-gupta-dev", href: "#" },
-                  { icon: Mail, label: "hello@ashish.dev", href: "#" }
+                  { icon: Github, label: "ashigupta007", href: "https://github.com/ashigupta007" },
+                  { icon: Linkedin, label: "ashish-gupta-dev", href: "https://www.linkedin.com/in/ashish-gupta-aa32bb129/" },
+                  { icon: Mail, label: "love4css@gmail.com", href: "mailto:love4css@gmail.com" }
                 ].map((contact, index) => (
                   <motion.a 
                     key={index}

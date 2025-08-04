@@ -47,7 +47,8 @@ function App() {
       impact: "Cut manual Excel work by 80%",
       color: "from-cyan-400 to-blue-500",
       urgent: "LIVE IN PRODUCTION",
-      delay: 0.1
+      delay: 0.1,
+      href: "https://trends.shiprocket.in/"
     },
     {
       name: "Copilot AI Assistant", 
@@ -56,7 +57,28 @@ function App() {
       impact: "Processing 10K+ queries/month",
       color: "from-purple-400 to-pink-500",
       urgent: "SCALING FAST",
-      delay: 0.2
+      delay: 0.2,
+      href: "https://copilot.shiprocket.in/"
+    },
+    {
+      name: "Internal Copilot for CXOs",
+      stack: "React • OpenAI • NestJS",
+      description: "Tailored AI copilot for CXO-level data and business query tool for actionable insights",
+      impact: "Accelerated decision-making for leadership",
+      color: "from-fuchsia-500 to-violet-500",
+      urgent: "INTERNAL PILOT",
+      delay: 0.25,
+      href: "#"
+    },
+    {
+      name: "Audience Pro",
+      stack: "React • Node.js • Shiprocket APIs",
+      description: "Audience segmentation and retargeting app for e-commerce merchants",
+      impact: "Boosted repeat sales for 1000+ sellers",
+      color: "from-yellow-400 to-orange-500",
+      urgent: "APP STORE READY",
+      delay: 0.27,
+      href: "https://appstore.shiprocket.in/shiprocket_audience"
     },
     {
       name: "Real-time Voice Chat",
@@ -65,7 +87,8 @@ function App() {
       impact: "Azure OpenAI hackathon Top 5",
       color: "from-green-400 to-emerald-500",
       urgent: "AWARD WINNER",
-      delay: 0.3
+      delay: 0.3,
+      href: "https://app.shiprocket.in"
     },
     {
       name: "Shopify Add-to-Cart App",
@@ -74,7 +97,8 @@ function App() {
       impact: "30% increase in ROAS",
       color: "from-orange-400 to-red-500",
       urgent: "ROI PROVEN",
-      delay: 0.4
+      delay: 0.4,
+      href: "https://promise.shiprocket.in/"
     }
   ];
 

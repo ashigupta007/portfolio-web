@@ -736,7 +736,7 @@ function App() {
               </motion.h2>
               
               <p className="text-base sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-                I'm accepting <span className="text-cyan-400 font-bold">2 new projects</span> this quarter. 
+                I'm accepting <span className="text-cyan-400 font-bold">a Full Time job</span>. 
                 Skip the endless interview cycles. Let's build something that converts.
               </p>
 

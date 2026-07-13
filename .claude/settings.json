@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rln \"contract\" /Users/ashishgupta/Desktop/ai-adlc/hooks /Users/ashishgupta/Desktop/ai-adlc/templates /Users/ashishgupta/Desktop/ai-adlc/skills /Users/ashishgupta/Desktop/ai-adlc/scripts 2>/dev/null | head; echo \"---\"; ls /Users/ashishgupta/Desktop/ai-adlc/templates 2>/dev/null | head -20)",
+      "Read(//Users/ashishgupta/Desktop/ai-adlc/hooks/**)",
+      "Read(//Users/ashishgupta/Desktop/ai-adlc/templates/**)",
+      "Bash(grep -rln \"main.contract.json\\\\|Change Contract\" /Users/ashishgupta/Desktop/ai-adlc /Users/ashishgupta/.claude/hooks /Users/ashishgupta/.claude/settings.json 2>/dev/null | head; echo \"---validators---\"; grep -rln \"R5\\\\|financial_impact\" /Users/ashishgupta/Desktop/ai-adlc 2>/dev/null | head)",
+      "Read(//Users/ashishgupta/Desktop/ai-adlc/**)",
+      "Bash(cat /Users/ashishgupta/Desktop/ai-adlc/scripts/validate-contract-schema.sh)",
+      "Read(//Users/ashishgupta/Desktop/ai-adlc/scripts/**)",
+      "Bash(npm install *)",
+      "Bash(node --check /Users/ashishgupta/Desktop/projects/portfolio-web/main.js)",
+      "Bash(git -C /Users/ashishgupta/Desktop/projects/portfolio-web status --short)",
+      "Bash(npx -y lighthouse http://localhost:4173/ --quiet --chrome-flags=--headless=new --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/lh2.json)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --screenshot=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/hero-desktop.png --window-size=1600,1000 --virtual-time-budget=6000 --hide-scrollbars http://localhost:4173/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --screenshot=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/mobile.png --window-size=390,844 --virtual-time-budget=6000 --hide-scrollbars http://localhost:4173/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --screenshot=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/work.png --window-size=1600,1000 --virtual-time-budget=8000 --hide-scrollbars 'http://localhost:4173/#work')",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --screenshot=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/contact.png --window-size=1600,1000 --virtual-time-budget=8000 --hide-scrollbars 'http://localhost:4173/#contact')",
+      "Bash(tail -25 /Users/ashishgupta/.npm/_logs/2026-07-13T09_56_54_181Z-debug-0.log | grep -A12 \"error\")",
+      "Read(//Users/ashishgupta/.npm/_logs/**)",
+      "Bash(npm i *)",
+      "Bash(npx -y lighthouse http://localhost:4173/ --quiet --chrome-flags=--headless=new --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/private/tmp/claude-502/-Users-ashishgupta-Desktop-projects-portfolio-web/d1f14450-b26e-45c3-8221-5e4c2bf0a84f/scratchpad/lh3.json)",
+      "Bash(npm uninstall *)",
+      "Bash(pkill -f \"vite preview\")"
+    ]
+  }
+}

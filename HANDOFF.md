@@ -175,13 +175,12 @@ These came from the brief + the previous site; confirm or edit in `index.html`:
 - Impact numbers: ~80% (Trends), 10K+ queries/mo (Copilot), 70% tool-resolution, top-5 hackathon
 - Resume Google Drive link + Calendly link (carried over from the old site)
 
-## 9. Repo cleanup (optional, safe)
+## 9. Repo cleanup — done (2026-07-13)
 
-The Bolt/React scaffold is no longer referenced by the build:
+The Bolt/React scaffold (src/, Tailwind/PostCSS configs, eslint config, tsconfigs,
+vite.config.ts, .bolt/) has been removed; `package.json` now has a single dev
+dependency: `vite`. No custom Vite config is needed — defaults handle root
+`index.html` + `public/`.
 
-```
-rm -rf src tailwind.config.js postcss.config.js
-npm uninstall react react-dom framer-motion lucide-react tailwindcss autoprefixer postcss @vitejs/plugin-react @types/react @types/react-dom eslint-plugin-react-hooks eslint-plugin-react-refresh
-```
-
-Also `vite.config.ts` can drop the React plugin. None of this is required — the build ignores them.
+Preserved from the old `vite.config.ts` (Vercel deploy hook that was noted there):
+`https://api.vercel.com/v1/integrations/deploy/prj_RKA2GeNPrnEyujARBvLn4rnPfFZ9/rA4ZapxPxI`

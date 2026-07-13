@@ -1,18 +1,17 @@
 {
-  "tier": "2",
+  "tier": "0",
   "mode": "bug_fix",
-  "confidence": 0.8,
+  "confidence": 0.6,
   "source": "classifier-rules.json",
-  "timestamp": "2026-07-13T09:14:30Z",
-  "classification_id": "cls_1783934070_c1fbaa40",
-  "active_task_id": "cls_1783934070_c1fbaa40",
-  "prompt_hash": "c1fbaa40",
-  "task_origin_prompt_hash": "c1fbaa40",
-  "last_prompt_hash": "c1fbaa40",
+  "timestamp": "2026-07-13T10:11:52Z",
+  "classification_id": "cls_1783937512_e0ff2b3b",
+  "active_task_id": "cls_1783937512_e0ff2b3b",
+  "prompt_hash": "e0ff2b3b",
+  "task_origin_prompt_hash": "e0ff2b3b",
+  "last_prompt_hash": "e0ff2b3b",
   "last_prompt_event": "task",
-  "last_prompt_ts": "2026-07-13T09:14:30Z",
+  "last_prompt_ts": "2026-07-13T10:11:52Z",
   "reasoning": [
-    "matched tier_2 keyword (strong/unconditional)",
     "matched bug_fix mode keyword"
   ]
 }

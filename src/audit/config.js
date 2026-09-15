@@ -11,58 +11,85 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Pricing — the single source for every price on the page
-   ------------------------------------------------------------ */
-export const PRICING_NOTE =
-  "Final pricing depends on product complexity, number of workflows, access requirements and audit scope. Every engagement is quoted before it starts.";
+   Pricing — the single source for every price and every scope
+   promise on the page. The comparison table, the mobile cards and
+   the custom tier are all rendered from this.
 
-export const PRICING = [
-  {
-    id: "health-check",
-    name: "UX Health Check",
-    price: "₹30,000",
-    priceLabel: "Starting from",
-    summary: "A focused review of one important product journey.",
-    points: [
-      "One workflow, end to end",
-      "Prioritised findings with evidence",
-      "Written walkthrough of the top issues",
-    ],
-  },
-  {
-    id: "product-audit",
-    name: "Product UX Audit",
-    price: "₹1,00,000",
-    priceLabel: "Starting from",
-    summary: "Major workflows and modules, reviewed and prioritised.",
-    points: [
-      "Multiple modules and cross-module behaviour",
-      "UX health score and priority matrix",
-      "Engineering-ready backlog",
-      "Live walkthrough + one feedback round",
-    ],
-    featured: true,
-  },
-  {
-    id: "deep-audit",
+   A value of `true` renders as included, `false` as not included,
+   and any string is shown as written.
+   ------------------------------------------------------------ */
+export const PRICING = {
+  priceLabel: "Launch price",
+
+  tiers: [
+    {
+      id: "health-check",
+      name: "UX Health Check",
+      price: "₹10,000",
+      bestFor: "One problematic journey",
+      cta: "Start with a Health Check",
+    },
+    {
+      id: "product-audit",
+      name: "Product UX Audit",
+      price: "₹40,000",
+      bestFor: "A full SaaS product review",
+      cta: "Book a Product UX Audit",
+      featured: true,
+    },
+  ],
+
+  groups: [
+    {
+      title: "Scope",
+      rows: [
+        { label: "Workflows", values: ["1 workflow", "3–5 critical workflows"] },
+        { label: "Findings", values: ["~8–15 strong findings", "~30–60 verified findings"] },
+      ],
+    },
+    {
+      title: "Review",
+      rows: [
+        { label: "Manual review", values: [true, true] },
+        { label: "Agentic exploration", values: ["Light", "Full"] },
+        { label: "Severity & prioritisation", values: [true, true] },
+        { label: "Screenshots & evidence", values: [true, true] },
+        { label: "Engineering-aware recommendations", values: ["Basic", "Detailed"] },
+      ],
+    },
+    {
+      title: "Report",
+      rows: [
+        { label: "Executive summary", values: [false, true] },
+        { label: "Pattern & root-cause analysis", values: [false, true] },
+      ],
+    },
+    {
+      title: "Engagement",
+      rows: [
+        { label: "Walkthrough", values: ["30 minutes", "60 minutes"] },
+        { label: "Revision", values: ["Clarifications only", "1 consolidated iteration"] },
+        { label: "Payment", values: ["100% upfront", "50% upfront, 50% before the full report"] },
+      ],
+    },
+  ],
+
+  custom: {
     name: "Deep Product Audit",
+    summary: "Beyond five workflows, or products with complex roles, permissions and multi-tenant surfaces.",
     price: "Custom scope",
-    priceLabel: "Quoted per product",
-    summary: "Large or unusually complex products.",
-    points: [
-      "Permissions, roles and multi-tenant surfaces",
-      "Recurring pattern analysis across the product",
-      "Optional CSV / Jira-ready export",
-    ],
+    cta: "Talk about a larger scope",
   },
-];
+};
+
+export const PRICING_NOTE =
+  "Launch prices. Scope, deliverables and payment terms are confirmed in writing before any work starts.";
 
 /* ------------------------------------------------------------
    Sample audit — clearly illustrative, never a real client
    ------------------------------------------------------------ */
 export const SAMPLE_SCORE = {
   overall: 71,
-  findings: 126,
   breakdown: [
     { label: "Navigation", value: 82 },
     { label: "Forms", value: 63 },
@@ -74,11 +101,12 @@ export const SAMPLE_SCORE = {
   ],
 };
 
+/** 48 in total — inside the Product UX Audit's ~30–60, which is what the sample is labelled as. */
 export const SEVERITIES = [
-  { key: "critical", label: "Critical", count: 8 },
-  { key: "high", label: "High", count: 27 },
-  { key: "medium", label: "Medium", count: 61 },
-  { key: "low", label: "Low", count: 30 },
+  { key: "critical", label: "Critical", count: 3 },
+  { key: "high", label: "High", count: 11 },
+  { key: "medium", label: "Medium", count: 22 },
+  { key: "low", label: "Low", count: 12 },
 ];
 
 export const SEVERITY_BASIS =

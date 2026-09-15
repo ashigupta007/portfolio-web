@@ -90,13 +90,13 @@ Display) via `@font-face` + `font-display: swap` + preload. Keep the mono/serif 
 | Lab experiments | L·01 voice budget, L·03 prompt diff, L·04 generative UI — each initialises on first open, so an unopened experiment costs nothing | on demand |
 | Navigation | Blur+border after 24px; hides after 160px scrolling down, returns on any up-scroll | 600ms ease-out |
 | Work figures | SVG art scales 1.02→1.06 on row hover; title shifts 6px; per-project looped micro-motion (dash flow, pulse, drift) paused offscreen via IO | 1.4s hover |
-| Case studies | `<dialog>` — WAAPI: rise 28px + scale 0.985→1 / 550ms in, 260ms out; backdrop blur 10px; scroll locked; focus returned to opener | 550/260ms |
+| Case studies | Real pages at `/work/<slug>` (see §15). Browser Back, refresh and sharing all work natively; "All work" returns to the exact homepage scroll position | 550/260ms |
 | Philosophy | Sticky-stacked full-height statements; previous panel fades to 0 and recedes (scale 0.96, −24px) as next covers it | scroll-linked |
 | Timeline | Section pins; scroll drives track horizontally (1px scroll = 1px translate); progress hairline fills. Touch/small/reduced → native horizontal scroll + snap | scroll-linked |
 | Magnetic buttons | Pills lerp toward cursor (max 10px, factor 0.28, lerp 0.18), spring home on leave. Pointer-fine only | rAF |
 
 **Reduced motion:** every transition/animation collapses to instant; canvases render a single
-static frame; timeline becomes a native scroller; philosophy unstacks; dialogs cut. Fully readable.
+static frame; timeline becomes a native scroller; philosophy unstacks; dialogs open instantly. Fully readable.
 
 **Performance rules encoded:** transforms + opacity only (no layout properties animated); one shared
 rAF loop that self-suspends when no system is active; IntersectionObserver gates all offscreen work;
@@ -118,7 +118,7 @@ scroll listener is passive and only stores a number.
 | `.hero-actions` | §hero | the homepage's two CTAs |
 | `.c-sel` | every form | custom listbox; there are no native `<select>` elements on the site |
 | `dialog.lead` | injected | the lead modal, on both pages |
-| `dialog.cs` | ×8 | case study template: topbar / title / lede / meta-grid / numbered sections / diagram / code / stats / lessons |
+| case study page | `work/<slug>/` ×8 | bar (All work · index) / title / lede / meta-grid / numbered sections / diagram / code / stats / lessons / next case study |
 | `.cs-diagram` + `.dgm` | 4 flagships | inline SVG architecture diagrams, animated flow dashes |
 | `.code` | MeetAira, Copilot | hand-tinted snippets (`.c .k .s .f` spans) |
 | `.phil-panel` | ×6 | sticky cinematic statements |
@@ -126,7 +126,7 @@ scroll listener is passive and only stores a number.
 | `.stat` | exp + case studies | hairline-top number blocks |
 | `.eco` | ×4 | capability ecosystems (no skill bars, ever) |
 | `.lab-item` | ×6 | experiment ledger with status pills; three carry `.is-runnable` + a `.lab-panel` |
-| `.btn-pill` / `.cs-open` | contact + work | magnetic pills |
+| `.btn-pill` / `.cs-open` | contact + work | magnetic pills; `.cs-open` is a link to the case study page |
 
 ---
 
@@ -181,7 +181,8 @@ Replacement rule: keep every image ≤ 200KB AVIF/WebP, `loading="lazy"`, explic
 ## 6. Accessibility
 
 - Semantic landmarks (`header/nav/main/section/footer`), one `h1`, ordered headings.
-- Skip link → `#main`. Native `<dialog>` = real focus trap + `Esc`; focus returns to the opener.
+- Skip link → `#main`. The mobile menu and lead modal are native `<dialog>`s: real focus trap + `Esc`.
+- Each case study page has exactly one `h1` (its title) and `h2` sections.
 - All text ≥ AA on `#090909` (see token table); `--ink-4` reserved for decorative labels.
 - `:focus-visible` ring in champagne on every interactive element.
 - Full `prefers-reduced-motion` treatment (see §2).
@@ -244,11 +245,10 @@ ES modules, bundled by Vite. No framework, still zero runtime dependencies.
 
 ```
 main.js                     homepage entry
-src/core/                   shared by both pages
+src/core/                   shared by every page
   motion.js                 rAF hub, scroll state, reduceMotion, visibility helpers
   reveal.js                 splitText + the [data-reveal] observer
   nav.js                    condensing nav + mobile dialog menu
-  dialogs.js                case-study <dialog> open/close
   magnetic.js               cursor-following pills
   select.js                 accessible listbox used in place of <select>
   analytics.js              track() / trackOnView() / initClickTracking()
@@ -270,6 +270,12 @@ src/audit/
   entry.js                  /ux-audit entry
   config.js                 ALL pricing, sample findings, score, audit matrix
   sample.js                 renders the score, severity, findings, pricing, matrix
+src/case/
+  entry.js                  /work/<slug> entry: nav, menu, the "All work" back link
+partials/                   shared HTML, inlined at build and dev time (see §15)
+work/
+  case.css                  the page around a case study
+  <slug>/index.html         one case study per directory
 ```
 
 Two conventions worth keeping:
@@ -310,7 +316,7 @@ the other.
 | `FORMSPREE_ID` | `src/lead/config.js` | `meaqydwv` — the last segment of `https://formspree.io/f/meaqydwv`. Leads are managed from the Formspree dashboard. **Emptying it is safe**: the form still validates and, on submit, tells the visitor to email `FALLBACK_EMAIL` rather than failing silently. |
 | `SCHEDULING.url` | `src/lead/config.js` | `calendly.com/love4css/product-ux-review-intro-call` — the dedicated 45-minute "Product UX Review — Intro Call" event. Keep `SCHEDULING.duration` in step with the event; it's printed above the embedded calendar. The homepage Contact section intentionally still links the separate hiring-conversation event. |
 | `FALLBACK_EMAIL` | `src/lead/config.js` | Where enquiries go if the form is unavailable. |
-| `PRICING` | `src/audit/config.js` | The only place prices live. |
+| `PRICING` | `src/audit/config.js` | The only place prices **and scope promises** live: `tiers` (name, price, best-for, CTA), `groups` of comparison rows (`true` = included, `false` = not included, a string is shown as written) and the `custom` tier. It renders as a comparison `<table>` from 880px and one card per tier below that. The process step, FAQ and deliverables copy on `/ux-audit` restate the tier differences in prose — change those too if a tier's revision, walkthrough or report contents change. |
 | `AUTO_OPEN` | `src/lead/config.js` | Modal auto-open thresholds — see §13. |
 
 Neither integration value is a secret: a Formspree form id is a public endpoint by design, and the
@@ -413,3 +419,52 @@ numbers hardcoded in the source. Nothing ran, nothing was computed, there was no
 The panels now **disclose rather than perform**. L·01 renders its latency budget immediately, as a
 budget. L·03 (prompt diff) and L·04 (generative UI) genuinely switch real content, so they keep
 their disclosure. If a future experiment can't produce a real result, it doesn't get a button.
+
+
+---
+
+## 15. Case studies are routes
+
+Each case study is its own page, not an overlay on the homepage:
+
+| Route | Project |
+|---|---|
+| `/work/meetaira` | MeetAira |
+| `/work/shiprocket-trends` | Shiprocket Trends |
+| `/work/shiprocket-copilot` | Shiprocket Copilot |
+| `/work/dockyard` | Dockyard |
+| `/work/twentytwo` | TwentyTwo |
+| `/work/agentic-component-library` | Agentic Component Library |
+| `/work/angular-migration-framework` | Angular Migration Framework |
+| `/work/live-orders-dashboard` | Live Orders Dashboard |
+
+They used to be `<dialog>`s. A dialog has no history entry, so the browser's Back button — and the
+swipe-back gesture on a phone — had nothing to undo and took the visitor off the site entirely. As
+pages, Back returns to the homepage at the exact scroll position they left (bfcache), refresh keeps
+the case study, links can be shared, and each case study gets its own title, description,
+canonical URL and analytics page view. It also took 36 KB of markup out of the homepage.
+
+**Navigation on a case page**
+- **All work** is a real link to `/#work`. When the visitor arrived from the homepage in the same
+  tab, it calls `history.back()` instead, so they land where they were rather than at the top of Work.
+- **Next case study** follows the homepage order and wraps from the last back to the first.
+- No lead modal and no auto-open here — interrupting someone mid-read costs more than it earns. The
+  nav's UX Audit pill still links to `/ux-audit`.
+
+**Adding a case study**
+1. Create `work/<slug>/index.html` — copy an existing one and replace the head metadata, the bar,
+   the `<article>` and the next link. Vite picks up every `work/*/index.html` automatically.
+2. Link the homepage row's `Case study` button to `/work/<slug>`.
+3. Point the previous case study's **Next** link at it, and its own Next at the one after.
+
+**Shared HTML.** The case pages share one head fragment, header and footer via
+`<!-- @include /partials/… -->`, inlined by a small `html-includes` plugin in `vite.config.js` in
+both dev and build. Edit `partials/site-header.html` once and all eight pages follow. The homepage
+still carries its own copy of the nav (its wordmark scrolls to `#top`), so keep the two in step.
+A running `vite dev` must be restarted after `vite.config.js` changes — Vite does not reliably pick
+up a new plugin in an already-running server, and until it does the includes stay as raw comments.
+That's why **stylesheet links are written directly in each case page's `<head>`, never in a
+partial**: a missed include then costs the page its nav, not every one of its styles.
+
+**Asset paths stay root-absolute** (`/styles.css`, `/work/case.css`, `/src/case/entry.js`), for the
+same reason as `/ux-audit`: the pages are served without a trailing slash.

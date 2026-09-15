@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeetAira — Case Study · Ashish Gupta</title>
+  <meta name="description" content="MeetAira is an AI emotional companion — a character platform where conversations happen in real time, by voice, with a face that reacts while you speak." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/meetaira" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/meetaira" />
+  <meta property="og:title" content="MeetAira — A companion that listens, remembers, and speaks." />
+  <meta property="og:description" content="MeetAira is an AI emotional companion — a character platform where conversations happen in real time, by voice, with a face that reacts while you speak." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MeetAira — A companion that listens, remembers, and speaks." />
+  <meta name="twitter:description" content="MeetAira is an AI emotional companion — a character platform where conversations happen in real time, by voice, with a face that reacts while you speak." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">01 / 08 · MeetAira</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">A companion that listens, remembers, and speaks.</h1>
+    <p class="cs-lede">MeetAira is an AI emotional companion — a character platform where conversations happen in real time, by voice, with a face that reacts while you speak.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Founding build — product, platform, AI</dd></div>
+      <div><dt>Timeline</dt><dd>2024 — 2025</dd></div>
+      <div><dt>Stack</dt><dd>FastAPI · WebSockets · Custom TTS/STT · Live2D · Redis</dd></div>
+      <div><dt>Status</dt><dd>Live</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>Companion apps promise presence and deliver a chat box. Text is too slow for intimacy, and off-the-shelf voice stacks add three to five seconds of dead air per turn — which reads as indifference. The product question wasn't "can an LLM chat" but "can a machine hold a conversation that feels alive."</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Discovery</h2>
+      <p>Prototyping showed the emotional ceiling was set almost entirely by latency and voice quality — not model intelligence. Users forgave a shallow answer delivered instantly with warmth; they abandoned brilliant answers that arrived late in a flat voice. That inverted the roadmap: the voice pipeline became the product, the model became a component.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Architecture</h2>
+      <div class="cs-diagram">
+        <svg class="dgm" viewBox="0 0 720 250" role="img" aria-label="MeetAira architecture: client audio streams through a gateway into STT, dialogue LLM, sentence segmenter and TTS, streaming audio back while expression events drive Live2D">
+          <rect class="d-box" x="16" y="86" width="120" height="70" rx="3"/>
+          <text class="d-label" x="34" y="115">CLIENT</text>
+          <text class="d-sub" x="34" y="132">MIC · LIVE2D</text>
+          <rect class="d-box" x="186" y="86" width="110" height="70" rx="3"/>
+          <text class="d-label" x="204" y="115">GATEWAY</text>
+          <text class="d-sub" x="204" y="132">WS · DUPLEX</text>
+          <rect class="d-box" x="346" y="16" width="110" height="56" rx="3"/>
+          <text class="d-label" x="364" y="41">STT</text>
+          <text class="d-sub" x="364" y="57">PARTIALS</text>
+          <rect class="d-box-hi" x="346" y="96" width="110" height="56" rx="3"/>
+          <text class="d-label" x="364" y="121">DIALOGUE</text>
+          <text class="d-sub" x="364" y="137">LLM · MEMORY</text>
+          <rect class="d-box" x="346" y="176" width="110" height="56" rx="3"/>
+          <text class="d-label" x="364" y="201">SEGMENTER</text>
+          <text class="d-sub" x="364" y="217">SENTENCES</text>
+          <rect class="d-box" x="516" y="136" width="110" height="56" rx="3"/>
+          <text class="d-label" x="534" y="161">TTS</text>
+          <text class="d-sub" x="534" y="177">CHUNKED AUDIO</text>
+          <rect class="d-box" x="516" y="46" width="110" height="56" rx="3"/>
+          <text class="d-label" x="534" y="71">EXPRESSION</text>
+          <text class="d-sub" x="534" y="87">EVENTS</text>
+          <path class="d-flow" d="M136 121 H186 M296 110 L346 50 M296 121 H346 M296 132 L346 200 M456 124 L516 160 M456 44 L516 70"/>
+          <path class="d-wire" d="M516 170 C 420 250 240 240 186 150 M516 80 C 400 10 240 40 186 100"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Engineering</h2>
+      <ul class="cs-list">
+        <li><b>Speak-while-thinking.</b> The LLM streams tokens into a sentence segmenter; each sentence is synthesized and played while the next is still being generated. First audio lands before the model finishes its thought.</li>
+        <li><b>Custom TTS/STT.</b> Off-the-shelf voices broke the character illusion. A tuned voice stack gave each character a consistent identity — and cut per-minute cost enough to make long sessions viable.</li>
+        <li><b>Live2D expression channel.</b> Sentiment and phoneme events ride a side-channel to the renderer, so the face reacts during speech, not after it.</li>
+        <li><b>Interruption handling.</b> Barge-in detection cancels synthesis mid-sentence and re-plans the turn — the difference between a recording and a conversation.</li>
+      </ul>
+      <div style="margin-top:1.6rem">
+        <pre class="code"><span class="c"># the core loop: audio out begins before the model finishes</span>
+<span class="k">async def</span> <span class="f">speak</span>(turn):
+    <span class="k">async for</span> text <span class="k">in</span> llm.stream(turn.context):
+      <span class="k">for</span> sentence <span class="k">in</span> segmenter.push(text):
+          audio = tts.synthesize(sentence)   <span class="c"># ~120ms to first chunk</span>
+          <span class="k">await</span> ws.send(audio)               <span class="c"># play while thinking</span>
+          emit_expression(sentence.sentiment)</pre>
+        <p class="code-caption">Streaming turn pipeline — simplified</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">05</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">&lt;1s</div><div class="stat-l">To first spoken audio</div></div>
+        <div class="stat"><div class="stat-n">60fps</div><div class="stat-l">Live2D expression in-browser</div></div>
+        <div class="stat"><div class="stat-n">Full stack</div><div class="stat-l">Custom voice pipeline, owned end to end</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">06</span>Lessons</h2>
+      <p>Emotional products are latency products. Every architectural decision — segmentation, chunked synthesis, barge-in — existed to protect a feeling, not a metric. When the engineering worked, nobody mentioned the engineering. That was the goal.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/shiprocket-trends">
+      <span class="case-next-k">Next case study · 02</span>
+      <span class="case-next-name">Shiprocket Trends</span>
+      <span class="case-next-essence">Analytics that answers questions, not just renders charts.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

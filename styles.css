@@ -80,6 +80,17 @@ h1, h2, h3, h4 { color: var(--ink); font-weight: 550; }
 
 img, svg, canvas, video { display: block; max-width: 100%; }
 
+/* screen-reader-only text, shared by both pages */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 a { color: inherit; text-decoration: none; }
 
 button {
@@ -305,6 +316,22 @@ button {
 }
 .nav-link:hover { color: var(--ink); }
 .nav-link:hover::after { transform: scaleX(1); transform-origin: left center; }
+
+/* the one nav item that asks for something — every page has it, so it lives
+   with the nav rather than with the lead form (case pages don't load that) */
+.nav-link.is-cta {
+  color: var(--bg);
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 0.62em 1.25em;
+  margin-left: 0.6rem;
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+.nav-link.is-cta::after { display: none; }
+.nav-link.is-cta:hover { background: var(--ink); color: var(--bg); }
+@media (max-width: 380px) {
+  .nav-link.is-cta { padding: 0.55em 0.85em; margin-left: 0; letter-spacing: 0.1em; }
+}
 
 .menu-btn {
   font-family: var(--font-mono);
@@ -674,63 +701,15 @@ button {
 @keyframes a-spin  { to { transform: rotate(360deg); } }
 
 /* ------------------------------------------------------------
-   8. CASE STUDY DIALOGS
+   8. CASE STUDIES — content styles for the /work/<slug> pages
    ------------------------------------------------------------ */
-dialog.cs {
-  width: 100vw;
-  height: 100dvh;
-  max-width: none;
-  max-height: none;
-  border: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--ink-2);
-  opacity: 0;
-  transform: translateY(28px) scale(0.985);
-}
-dialog.cs[open] {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
-}
-dialog.cs.is-closing {
-  opacity: 0;
-  transform: translateY(18px) scale(0.99);
-  transition: opacity 0.3s var(--ease-inout), transform 0.3s var(--ease-inout);
-}
-dialog.cs::backdrop {
-  background: rgba(9, 9, 9, 0.7);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.cs-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; }
-
 .cs-inner {
   max-width: 980px;
   margin-inline: auto;
   padding: clamp(3.5rem, 8vh, 6rem) var(--gutter) clamp(6rem, 12vh, 9rem);
 }
 
-.cs-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem var(--gutter);
-  background: rgba(9, 9, 9, 0.72);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: var(--t-label);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
+/* pill-shaped close control — used by the mobile menu */
 .cs-close {
   font-family: var(--font-mono);
   font-size: var(--t-label);

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TwentyTwo — Case Study · Ashish Gupta</title>
+  <meta name="description" content="TwentyTwo is an AI phone agent for Shopify merchants — it calls abandoned carts, holds a natural conversation within merchant guardrails, and writes every outcome back to the store." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/twentytwo" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/twentytwo" />
+  <meta property="og:title" content="TwentyTwo — Revenue recovery, by phone." />
+  <meta property="og:description" content="TwentyTwo is an AI phone agent for Shopify merchants — it calls abandoned carts, holds a natural conversation within merchant guardrails, and writes every outcome back to the store." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="TwentyTwo — Revenue recovery, by phone." />
+  <meta name="twitter:description" content="TwentyTwo is an AI phone agent for Shopify merchants — it calls abandoned carts, holds a natural conversation within merchant guardrails, and writes every outcome back to the store." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">05 / 08 · TwentyTwo</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">Revenue recovery, by phone.</h1>
+    <p class="cs-lede">TwentyTwo is an AI phone agent for Shopify merchants — it calls abandoned carts, holds a natural conversation within merchant guardrails, and writes every outcome back to the store.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Founder-engineer</dd></div>
+      <div><dt>Timeline</dt><dd>2025 — 2026</dd></div>
+      <div><dt>Stack</dt><dd>Voice pipeline · Telephony · Shopify APIs · Workflow engine</dd></div>
+      <div><dt>Status</dt><dd>In build · early merchants</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>Roughly seven of ten carts are abandoned, and merchants fight it with the two channels everyone ignores: email and SMS. A phone call converts dramatically better — but no merchant can staff calls at 11pm for a ₹1,400 cart. The economics only work if the caller is software.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Approach</h2>
+      <p>The agent is built like a good sales rep, not a robot with a script: it knows the cart, the customer's history and the merchant's discount ceiling; it opens honestly as an AI assistant; it handles objections within guardrails; and it knows when to stop. Merchants configure intent, tone and limits — the voice workflow engine handles the rest, from dial to Shopify write-back.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Architecture notes</h2>
+      <ul class="cs-list">
+        <li><b>Trigger.</b> Shopify webhook → eligibility rules (cart value, region, quiet hours, do-not-call) → call queue.</li>
+        <li><b>Conversation.</b> The MeetAira-derived streaming voice stack, tuned for telephony's 8kHz reality and interruption-heavy dialogues.</li>
+        <li><b>Guardrails.</b> Discount authority, claim restrictions and mandatory disclosures are enforced in the tool layer, not the prompt.</li>
+        <li><b>Write-back.</b> Outcomes land in the store: recovered checkout links, applied discounts, tagged customers, transcripts.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">Zero-touch</div><div class="stat-l">From abandoned cart to recovery call</div></div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Of calls within merchant guardrails, logged</div></div>
+        <div class="stat"><div class="stat-n">1 → N</div><div class="stat-l">Voice stack reused from MeetAira</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">05</span>Lessons</h2>
+      <p>Vertical AI products are trust products. The prompt engineering was the easy month; the guardrail engineering — provable limits on what the agent may offer and claim — is the product. Building the second product on the first one's infrastructure is the compounding I optimize for.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/agentic-component-library">
+      <span class="case-next-k">Next case study · 06</span>
+      <span class="case-next-name">Agentic Component Library</span>
+      <span class="case-next-essence">One design system, two frameworks, zero drift.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

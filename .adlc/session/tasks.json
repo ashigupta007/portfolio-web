@@ -13,9 +13,9 @@
       "title": "<ide_opened_file>The user opened the file /Users/ashishgupta/Desktop/projects/po",
       "state": "active",
       "created_at": "2026-09-15T06:35:33Z",
-      "last_activity": "2026-09-15T10:04:10Z",
-      "last_activity_epoch": 1789466650,
-      "tier_high_water": "1",
+      "last_activity": "2026-09-15T10:55:17Z",
+      "last_activity_epoch": 1789469717,
+      "tier_high_water": "2",
       "branches": [
         "main"
       ]

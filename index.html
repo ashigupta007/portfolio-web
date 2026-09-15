@@ -274,7 +274,7 @@
           <ul class="work-meta">
             <li>Voice AI</li><li>Custom TTS · STT</li><li>Live2D</li><li>Streaming</li><li>FastAPI</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-meetaira">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/meetaira">Case study</a>
         </div>
       </article>
 
@@ -342,7 +342,7 @@
           <ul class="work-meta">
             <li>AI Insights</li><li>Data Viz</li><li>Enterprise UX</li><li>Performance</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-trends">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/shiprocket-trends">Case study</a>
         </div>
       </article>
 
@@ -412,7 +412,7 @@
           <ul class="work-meta">
             <li>Realtime Voice</li><li>Tool Execution</li><li>WebRTC</li><li>RAG</li><li>Streaming</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-copilot">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/shiprocket-copilot">Case study</a>
         </div>
       </article>
 
@@ -452,7 +452,7 @@
           <ul class="work-meta">
             <li>LLM Orchestration</li><li>Prompt Mgmt</li><li>Governance</li><li>RAG</li><li>Observability</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-dockyard">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/dockyard">Case study</a>
         </div>
       </article>
 
@@ -486,7 +486,7 @@
           <ul class="work-meta">
             <li>Voice Workflows</li><li>Shopify</li><li>Automation</li><li>Telephony</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-twentytwo">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/twentytwo">Case study</a>
         </div>
       </article>
 
@@ -634,7 +634,7 @@
           <ul class="work-meta">
             <li>Design System</li><li>React</li><li>Angular</li><li>A11y</li><li>Tooling</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-components">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/agentic-component-library">Case study</a>
         </div>
       </article>
 
@@ -675,7 +675,7 @@
           <ul class="work-meta">
             <li>AST Tooling</li><li>Codemods</li><li>Verification</li><li>Parity System</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-migration">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/angular-migration-framework">Case study</a>
         </div>
       </article>
 
@@ -735,7 +735,7 @@
           <ul class="work-meta">
             <li>Realtime</li><li>WebSockets</li><li>FLIP Animation</li><li>Enterprise Dashboard</li>
           </ul>
-          <button class="cs-open" data-magnetic data-open="cs-liveorders">Case study</button>
+          <a class="cs-open" data-magnetic href="/work/live-orders-dashboard">Case study</a>
         </div>
       </article>
 
@@ -775,13 +775,13 @@
               <span class="band-score-v"><b>71</b>/ 100</span>
             </div>
             <ul class="band-sev">
-              <li data-sev="critical"><i></i>Critical<b>08</b></li>
-              <li data-sev="high"><i></i>High<b>27</b></li>
-              <li data-sev="medium"><i></i>Medium<b>61</b></li>
-              <li data-sev="low"><i></i>Low<b>30</b></li>
+              <li data-sev="critical"><i></i>Critical<b>03</b></li>
+              <li data-sev="high"><i></i>High<b>11</b></li>
+              <li data-sev="medium"><i></i>Medium<b>22</b></li>
+              <li data-sev="low"><i></i>Low<b>12</b></li>
             </ul>
           </div>
-          <p class="band-card-foot">126 findings across 17 categories &middot; sample data</p>
+          <p class="band-card-foot">48 verified findings &middot; sample data</p>
         </div>
       </div>
     </div>
@@ -1232,547 +1232,6 @@
     <span>Charcoal · Ink · Champagne</span>
   </div>
 </footer>
-
-<!-- ================= CASE STUDY DIALOGS ================= -->
-
-<!-- MeetAira -->
-<dialog class="cs" id="cs-meetaira" aria-labelledby="cs-meetaira-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>01 · MeetAira</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-meetaira-title">A companion that listens, remembers, and speaks.</h2>
-      <p class="cs-lede">MeetAira is an AI emotional companion — a character platform where conversations happen in real time, by voice, with a face that reacts while you speak.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Founding build — product, platform, AI</dd></div>
-        <div><dt>Timeline</dt><dd>2024 — 2025</dd></div>
-        <div><dt>Stack</dt><dd>FastAPI · WebSockets · Custom TTS/STT · Live2D · Redis</dd></div>
-        <div><dt>Status</dt><dd>Live</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Companion apps promise presence and deliver a chat box. Text is too slow for intimacy, and off-the-shelf voice stacks add three to five seconds of dead air per turn — which reads as indifference. The product question wasn't "can an LLM chat" but "can a machine hold a conversation that feels alive."</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Discovery</h3>
-        <p>Prototyping showed the emotional ceiling was set almost entirely by latency and voice quality — not model intelligence. Users forgave a shallow answer delivered instantly with warmth; they abandoned brilliant answers that arrived late in a flat voice. That inverted the roadmap: the voice pipeline became the product, the model became a component.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Architecture</h3>
-        <div class="cs-diagram">
-          <svg class="dgm" viewBox="0 0 720 250" role="img" aria-label="MeetAira architecture: client audio streams through a gateway into STT, dialogue LLM, sentence segmenter and TTS, streaming audio back while expression events drive Live2D">
-            <rect class="d-box" x="16" y="86" width="120" height="70" rx="3"/>
-            <text class="d-label" x="34" y="115">CLIENT</text>
-            <text class="d-sub" x="34" y="132">MIC · LIVE2D</text>
-            <rect class="d-box" x="186" y="86" width="110" height="70" rx="3"/>
-            <text class="d-label" x="204" y="115">GATEWAY</text>
-            <text class="d-sub" x="204" y="132">WS · DUPLEX</text>
-            <rect class="d-box" x="346" y="16" width="110" height="56" rx="3"/>
-            <text class="d-label" x="364" y="41">STT</text>
-            <text class="d-sub" x="364" y="57">PARTIALS</text>
-            <rect class="d-box-hi" x="346" y="96" width="110" height="56" rx="3"/>
-            <text class="d-label" x="364" y="121">DIALOGUE</text>
-            <text class="d-sub" x="364" y="137">LLM · MEMORY</text>
-            <rect class="d-box" x="346" y="176" width="110" height="56" rx="3"/>
-            <text class="d-label" x="364" y="201">SEGMENTER</text>
-            <text class="d-sub" x="364" y="217">SENTENCES</text>
-            <rect class="d-box" x="516" y="136" width="110" height="56" rx="3"/>
-            <text class="d-label" x="534" y="161">TTS</text>
-            <text class="d-sub" x="534" y="177">CHUNKED AUDIO</text>
-            <rect class="d-box" x="516" y="46" width="110" height="56" rx="3"/>
-            <text class="d-label" x="534" y="71">EXPRESSION</text>
-            <text class="d-sub" x="534" y="87">EVENTS</text>
-            <path class="d-flow" d="M136 121 H186 M296 110 L346 50 M296 121 H346 M296 132 L346 200 M456 124 L516 160 M456 44 L516 70"/>
-            <path class="d-wire" d="M516 170 C 420 250 240 240 186 150 M516 80 C 400 10 240 40 186 100"/>
-          </svg>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Engineering</h3>
-        <ul class="cs-list">
-          <li><b>Speak-while-thinking.</b> The LLM streams tokens into a sentence segmenter; each sentence is synthesized and played while the next is still being generated. First audio lands before the model finishes its thought.</li>
-          <li><b>Custom TTS/STT.</b> Off-the-shelf voices broke the character illusion. A tuned voice stack gave each character a consistent identity — and cut per-minute cost enough to make long sessions viable.</li>
-          <li><b>Live2D expression channel.</b> Sentiment and phoneme events ride a side-channel to the renderer, so the face reacts during speech, not after it.</li>
-          <li><b>Interruption handling.</b> Barge-in detection cancels synthesis mid-sentence and re-plans the turn — the difference between a recording and a conversation.</li>
-        </ul>
-        <div style="margin-top:1.6rem">
-          <pre class="code"><span class="c"># the core loop: audio out begins before the model finishes</span>
-<span class="k">async def</span> <span class="f">speak</span>(turn):
-    <span class="k">async for</span> text <span class="k">in</span> llm.stream(turn.context):
-        <span class="k">for</span> sentence <span class="k">in</span> segmenter.push(text):
-            audio = tts.synthesize(sentence)   <span class="c"># ~120ms to first chunk</span>
-            <span class="k">await</span> ws.send(audio)               <span class="c"># play while thinking</span>
-            emit_expression(sentence.sentiment)</pre>
-          <p class="code-caption">Streaming turn pipeline — simplified</p>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">05</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">&lt;1s</div><div class="stat-l">To first spoken audio</div></div>
-          <div class="stat"><div class="stat-n">60fps</div><div class="stat-l">Live2D expression in-browser</div></div>
-          <div class="stat"><div class="stat-n">Full stack</div><div class="stat-l">Custom voice pipeline, owned end to end</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">06</span>Lessons</h3>
-        <p>Emotional products are latency products. Every architectural decision — segmentation, chunked synthesis, barge-in — existed to protect a feeling, not a metric. When the engineering worked, nobody mentioned the engineering. That was the goal.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Trends -->
-<dialog class="cs" id="cs-trends" aria-labelledby="cs-trends-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>02 · Shiprocket Trends</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-trends-title">Analytics that answers questions.</h2>
-      <p class="cs-lede">A self-serve analytics platform for e-commerce sellers — interactive dashboards at SKU and city granularity, with an AI insight layer that says what the charts mean.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Product engineer — end to end</dd></div>
-        <div><dt>Timeline</dt><dd>2022, evolved since</dd></div>
-        <div><dt>Stack</dt><dd>React · TypeScript · NestJS · Charting · LLM insights</dd></div>
-        <div><dt>Status</dt><dd>Live in production</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Sellers were exporting spreadsheets to answer basic questions: which SKU is growing, which city is slipping, what changed this week. Analysts became a bottleneck; decisions ran days behind the data. The existing tools rendered charts — they didn't answer questions.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Design</h3>
-        <p>The organizing principle: every screen must answer a question a seller actually asks, in their words, in under three seconds. Dashboards were designed backwards from those questions. Filters compose instead of stacking; drill-downs preserve context; and an insight strip narrates each view — "West-zone prepaid orders up 23%, driven by two SKUs" — so the reading is done for you.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Architecture</h3>
-        <div class="cs-diagram">
-          <svg class="dgm" viewBox="0 0 720 190" role="img" aria-label="Trends architecture: event pipeline feeds aggregation store, queried by a query layer that powers dashboards, with an LLM insight engine narrating each view">
-            <rect class="d-box" x="16" y="66" width="120" height="60" rx="3"/>
-            <text class="d-label" x="34" y="92">EVENTS</text>
-            <text class="d-sub" x="34" y="108">ORDERS · SHIPMENTS</text>
-            <rect class="d-box" x="186" y="66" width="130" height="60" rx="3"/>
-            <text class="d-label" x="204" y="92">AGGREGATION</text>
-            <text class="d-sub" x="204" y="108">SKU × CITY × DAY</text>
-            <rect class="d-box" x="366" y="66" width="120" height="60" rx="3"/>
-            <text class="d-label" x="384" y="92">QUERY LAYER</text>
-            <text class="d-sub" x="384" y="108">CACHED · &lt;300MS</text>
-            <rect class="d-box" x="536" y="16" width="120" height="60" rx="3"/>
-            <text class="d-label" x="554" y="42">DASHBOARD</text>
-            <text class="d-sub" x="554" y="58">REACT · VIRTUALIZED</text>
-            <rect class="d-box-hi" x="536" y="116" width="120" height="60" rx="3"/>
-            <text class="d-label" x="554" y="142">INSIGHT ENGINE</text>
-            <text class="d-sub" x="554" y="158">LLM NARRATION</text>
-            <path class="d-flow" d="M136 96 H186 M316 96 H366 M486 86 L536 46 M486 106 L536 146"/>
-          </svg>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Engineering</h3>
-        <ul class="cs-list">
-          <li><b>Pre-aggregation over cleverness.</b> The heaviest questions were known in advance, so the pipeline materializes SKU × city × day rollups — the UI never waits on a raw scan.</li>
-          <li><b>Perceived performance.</b> Skeleton-free rendering: charts draw from cache immediately, then reconcile. No spinners on the money screens.</li>
-          <li><b>Virtualized everything.</b> Ten-thousand-row tables filter and sort at 60fps because only what's visible exists.</li>
-          <li><b>Insight guardrails.</b> The LLM narrates only computed aggregates — it never invents numbers; every claim links to the chart that proves it.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">05</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">~80%</div><div class="stat-l">Less manual spreadsheet work</div></div>
-          <div class="stat"><div class="stat-n">SKU × City</div><div class="stat-l">Granularity, self-serve</div></div>
-          <div class="stat"><div class="stat-n">&lt;3s</div><div class="stat-l">Question to answer, p95</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">06</span>Lessons</h3>
-        <p>Enterprise users don't want more data — they want fewer decisions. The AI layer succeeded precisely because it was constrained: narration, never invention. Trust, once earned, made everything else adopted.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Copilot -->
-<dialog class="cs" id="cs-copilot" aria-labelledby="cs-copilot-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>03 · Shiprocket Copilot</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-copilot-title">An assistant that does the work.</h2>
-      <p class="cs-lede">A realtime voice and chat copilot embedded in the seller back-office — it retrieves knowledge, streams answers, and executes tools against live order workflows.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Lead engineer — AI &amp; product</dd></div>
-        <div><dt>Timeline</dt><dd>2023 — 2024</dd></div>
-        <div><dt>Stack</dt><dd>Next.js · NestJS · OpenAI · WebRTC · MCP · RAG</dd></div>
-        <div><dt>Status</dt><dd>Live · 10K+ queries/month</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Sellers lived in support queues for actions the system could perform in seconds — "where is order 4127", "reschedule this pickup", "why was my COD remittance short". A chatbot that answered questions would have been a FAQ with better manners. The bar was an assistant that finishes the task.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Discovery</h3>
-        <p>Shadowing support conversations produced a taxonomy: roughly seventy percent of queries mapped to twenty tool-shaped actions; the rest needed knowledge retrieval. That split defined the architecture — a tool-execution loop for actions, RAG over help content and seller data for the rest, and one conversational surface over both. A hackathon voice prototype (top-5, Azure OpenAI) proved the voice channel deserved to be first-class, not a gimmick.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Architecture</h3>
-        <div class="cs-diagram">
-          <svg class="dgm" viewBox="0 0 720 230" role="img" aria-label="Copilot architecture: chat and voice clients connect through a realtime edge to the orchestrator, which runs an LLM tool loop against order APIs and a retrieval index">
-            <rect class="d-box" x="16" y="26" width="120" height="56" rx="3"/>
-            <text class="d-label" x="34" y="51">CHAT UI</text>
-            <text class="d-sub" x="34" y="67">STREAMED</text>
-            <rect class="d-box" x="16" y="126" width="120" height="56" rx="3"/>
-            <text class="d-label" x="34" y="151">VOICE</text>
-            <text class="d-sub" x="34" y="167">WEBRTC</text>
-            <rect class="d-box" x="196" y="76" width="120" height="56" rx="3"/>
-            <text class="d-label" x="214" y="101">RT EDGE</text>
-            <text class="d-sub" x="214" y="117">WS · SFU</text>
-            <rect class="d-box-hi" x="376" y="76" width="130" height="56" rx="3"/>
-            <text class="d-label" x="394" y="101">ORCHESTRATOR</text>
-            <text class="d-sub" x="394" y="117">LLM TOOL LOOP</text>
-            <rect class="d-box" x="566" y="16" width="130" height="52" rx="3"/>
-            <text class="d-label" x="584" y="39">ORDER APIS</text>
-            <text class="d-sub" x="584" y="55">GUARDED WRITES</text>
-            <rect class="d-box" x="566" y="88" width="130" height="52" rx="3"/>
-            <text class="d-label" x="584" y="111">KNOWLEDGE</text>
-            <text class="d-sub" x="584" y="127">RAG INDEX</text>
-            <rect class="d-box" x="566" y="160" width="130" height="52" rx="3"/>
-            <text class="d-label" x="584" y="183">AUDIT LOG</text>
-            <text class="d-sub" x="584" y="199">EVERY TOOL CALL</text>
-            <path class="d-flow" d="M136 54 L196 90 M136 154 L196 118 M316 104 H376 M506 92 L566 42 M506 104 H566 M506 116 L566 186"/>
-          </svg>
-        </div>
-        <div style="margin-top:1.6rem">
-          <pre class="code"><span class="c">// the loop that turns answers into actions</span>
-<span class="k">while</span> (!turn.done) {
-  <span class="k">const</span> step = <span class="k">await</span> model.stream({ messages, tools });
-  <span class="k">if</span> (step.toolCall) {
-    <span class="c">// risky writes (refunds, cancellations) require confirm-first</span>
-    <span class="k">const</span> result = <span class="k">await</span> <span class="f">execute</span>(step.toolCall, { confirm: isRisky(step) });
-    messages.push(result);
-  } <span class="k">else</span> turn.done = <span class="k">true</span>;
-}</pre>
-          <p class="code-caption">Tool-execution loop — simplified</p>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Engineering</h3>
-        <ul class="cs-list">
-          <li><b>Confirm-first writes.</b> Reads execute silently; mutations render a preview card the seller approves. Trust was designed, not assumed.</li>
-          <li><b>One pipeline, two channels.</b> Voice and chat share the orchestrator — voice adds STT partials in and sentence-chunked TTS out, nothing forks.</li>
-          <li><b>Retrieval with receipts.</b> Every knowledge answer cites its source document inline; unverifiable answers are refused by policy.</li>
-          <li><b>Full audit trail.</b> Every tool call is logged with inputs, outputs and the conversation that authorized it.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">05</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">10K+</div><div class="stat-l">Queries handled monthly</div></div>
-          <div class="stat"><div class="stat-n">70%</div><div class="stat-l">Of intents resolved by tools, not text</div></div>
-          <div class="stat"><div class="stat-n">2</div><div class="stat-l">Channels, one orchestration pipeline</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">06</span>Lessons</h3>
-        <p>The hard part of an agent isn't the loop — it's the social contract around writes. Preview cards and audit logs did more for adoption than any model upgrade. People don't adopt intelligence; they adopt accountability.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Dockyard -->
-<dialog class="cs" id="cs-dockyard" aria-labelledby="cs-dockyard-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>04 · Dockyard</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-dockyard-title">One gateway for every model.</h2>
-      <p class="cs-lede">Dockyard is an internal AI platform — orchestration, prompt management, budgets, governance, a playground and observability — so product teams ship AI features without each rebuilding the plumbing.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Platform architect &amp; lead engineer</dd></div>
-        <div><dt>Timeline</dt><dd>2024 — 2025</dd></div>
-        <div><dt>Stack</dt><dd>FastAPI · Postgres · Redis · Multi-provider LLMs · OTel</dd></div>
-        <div><dt>Status</dt><dd>Internal production</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Five teams, five OpenAI keys, five retry implementations, zero visibility. Prompts lived in code, spend lived in surprise invoices, and every incident began with "which team's integration is this?" AI adoption was outpacing AI governance by quarters.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Design</h3>
-        <p>The platform bet: make the governed path the easiest path. One SDK call gets routing, retries, fallbacks, caching, budget enforcement and tracing — doing it yourself becomes the expensive option. Prompts are versioned artifacts with owners and rollout stages, not string literals. The playground runs against the same gateway as production, so what you test is what ships.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Architecture</h3>
-        <div class="cs-diagram">
-          <svg class="dgm" viewBox="0 0 720 240" role="img" aria-label="Dockyard architecture: team SDKs call a gateway enforcing auth and budgets, a router selects providers, with prompt registry and traces attached">
-            <rect class="d-box" x="16" y="86" width="110" height="60" rx="3"/>
-            <text class="d-label" x="34" y="112">TEAM APPS</text>
-            <text class="d-sub" x="34" y="128">ONE SDK</text>
-            <rect class="d-box-hi" x="186" y="86" width="130" height="60" rx="3"/>
-            <text class="d-label" x="204" y="112">GATEWAY</text>
-            <text class="d-sub" x="204" y="128">AUTH · BUDGETS</text>
-            <rect class="d-box" x="376" y="86" width="110" height="60" rx="3"/>
-            <text class="d-label" x="394" y="112">ROUTER</text>
-            <text class="d-sub" x="394" y="128">COST · FALLBACK</text>
-            <rect class="d-box" x="546" y="16" width="150" height="52" rx="3"/>
-            <text class="d-label" x="564" y="39">PROVIDER A · B · C</text>
-            <text class="d-sub" x="564" y="55">HOSTED + SELF-HOSTED</text>
-            <rect class="d-box" x="546" y="96" width="150" height="52" rx="3"/>
-            <text class="d-label" x="564" y="119">RAG SERVICE</text>
-            <text class="d-sub" x="564" y="135">SHARED INDEXES</text>
-            <rect class="d-box" x="186" y="176" width="130" height="52" rx="3"/>
-            <text class="d-label" x="204" y="199">PROMPT REGISTRY</text>
-            <text class="d-sub" x="204" y="215">VERSIONED · STAGED</text>
-            <rect class="d-box" x="376" y="176" width="110" height="52" rx="3"/>
-            <text class="d-label" x="394" y="199">TRACES</text>
-            <text class="d-sub" x="394" y="215">OTEL · EVALS</text>
-            <path class="d-flow" d="M126 116 H186 M316 116 H376 M486 106 L546 42 M486 116 H546"/>
-            <path class="d-wire" d="M251 146 V176 M431 146 V176"/>
-          </svg>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Engineering</h3>
-        <ul class="cs-list">
-          <li><b>Budgets that degrade gracefully.</b> Teams hitting limits fall back to cheaper models with a warning — features slow down before they black out.</li>
-          <li><b>Prompt lifecycle.</b> Draft → staged → production, with diffs, owners and instant rollback. A prompt change is a deploy, and it's treated like one.</li>
-          <li><b>Trace-per-request.</b> Every call carries prompt version, route, tokens, latency and cost through OpenTelemetry — incidents start with evidence, not archaeology.</li>
-          <li><b>Provider abstraction that leaks on purpose.</b> Teams can pin models when they need to; the platform routes when they don't care. Escape hatches kept adoption voluntary — and total.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">05</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">1</div><div class="stat-l">Gateway for all AI traffic</div></div>
-          <div class="stat"><div class="stat-n">Per-team</div><div class="stat-l">Budgets, enforced at the edge</div></div>
-          <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Of calls traced, prompt-versioned</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">06</span>Lessons</h3>
-        <p>Internal platforms live or die on the default path. Nobody was forced onto Dockyard; it won because the governed way was also the lazy way. That's the whole trick, and it's harder than it sounds.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- TwentyTwo -->
-<dialog class="cs" id="cs-twentytwo" aria-labelledby="cs-twentytwo-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>05 · TwentyTwo</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-twentytwo-title">Revenue recovery, by phone.</h2>
-      <p class="cs-lede">TwentyTwo is an AI phone agent for Shopify merchants — it calls abandoned carts, holds a natural conversation within merchant guardrails, and writes every outcome back to the store.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Founder-engineer</dd></div>
-        <div><dt>Timeline</dt><dd>2025 — 2026</dd></div>
-        <div><dt>Stack</dt><dd>Voice pipeline · Telephony · Shopify APIs · Workflow engine</dd></div>
-        <div><dt>Status</dt><dd>In build · early merchants</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Roughly seven of ten carts are abandoned, and merchants fight it with the two channels everyone ignores: email and SMS. A phone call converts dramatically better — but no merchant can staff calls at 11pm for a ₹1,400 cart. The economics only work if the caller is software.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Approach</h3>
-        <p>The agent is built like a good sales rep, not a robot with a script: it knows the cart, the customer's history and the merchant's discount ceiling; it opens honestly as an AI assistant; it handles objections within guardrails; and it knows when to stop. Merchants configure intent, tone and limits — the voice workflow engine handles the rest, from dial to Shopify write-back.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Architecture notes</h3>
-        <ul class="cs-list">
-          <li><b>Trigger.</b> Shopify webhook → eligibility rules (cart value, region, quiet hours, do-not-call) → call queue.</li>
-          <li><b>Conversation.</b> The MeetAira-derived streaming voice stack, tuned for telephony's 8kHz reality and interruption-heavy dialogues.</li>
-          <li><b>Guardrails.</b> Discount authority, claim restrictions and mandatory disclosures are enforced in the tool layer, not the prompt.</li>
-          <li><b>Write-back.</b> Outcomes land in the store: recovered checkout links, applied discounts, tagged customers, transcripts.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">Zero-touch</div><div class="stat-l">From abandoned cart to recovery call</div></div>
-          <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Of calls within merchant guardrails, logged</div></div>
-          <div class="stat"><div class="stat-n">1 → N</div><div class="stat-l">Voice stack reused from MeetAira</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">05</span>Lessons</h3>
-        <p>Vertical AI products are trust products. The prompt engineering was the easy month; the guardrail engineering — provable limits on what the agent may offer and claim — is the product. Building the second product on the first one's infrastructure is the compounding I optimize for.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Components -->
-<dialog class="cs" id="cs-components" aria-labelledby="cs-components-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>06 · Agentic Component Library</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-components-title">One system, two frameworks.</h2>
-      <p class="cs-lede">A design system delivered simultaneously to React and Angular codebases from a single source of truth — tokens, behaviour contracts, accessibility and performance budgets included.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Design system lead</dd></div>
-        <div><dt>Timeline</dt><dd>2023 — 2025</dd></div>
-        <div><dt>Stack</dt><dd>React · Angular · TypeScript · Design tokens · CI</dd></div>
-        <div><dt>Status</dt><dd>Adopted across product teams</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>An enterprise mid-migration lives in two worlds: new surfaces in React, a decade of Angular still serving customers. Two implementations of every button meant double the bugs, drifting brands, and accessibility that depended on which year a screen was built.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Approach</h3>
-        <ul class="cs-list">
-          <li><b>Tokens as the treaty.</b> Color, type, spacing, motion and state live in one token pipeline; both frameworks consume generated outputs. Design changes land everywhere or nowhere.</li>
-          <li><b>Behaviour contracts.</b> Each component has a framework-agnostic spec — states, keyboard map, ARIA contract — and both implementations are tested against the same spec suite.</li>
-          <li><b>Budgets in CI.</b> Bundle size and interaction latency are budgeted per component; a regression fails the build, not the user.</li>
-          <li><b>Migration tooling.</b> Codemods map legacy component usage onto the system, making adoption a command rather than a quarter.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">1</div><div class="stat-l">Source of truth for both frameworks</div></div>
-          <div class="stat"><div class="stat-n">AA</div><div class="stat-l">Accessibility contract, tested in CI</div></div>
-          <div class="stat"><div class="stat-n">0</div><div class="stat-l">Visual drift between stacks</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Lessons</h3>
-        <p>A design system is a political artifact wearing an engineering costume. The token pipeline and spec suite mattered because they ended arguments — the system became the place where decisions, once made, stayed made.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Migration -->
-<dialog class="cs" id="cs-migration" aria-labelledby="cs-migration-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>07 · Angular Migration Framework</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-migration-title">Rebuilding the plane mid-flight.</h2>
-      <p class="cs-lede">A framework for migrating a large enterprise Angular application incrementally — with an extraction graph, automated component mapping, and a parity system that proves each migrated screen behaves identically.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Architect &amp; tooling engineer</dd></div>
-        <div><dt>Timeline</dt><dd>2024</dd></div>
-        <div><dt>Stack</dt><dd>AST analysis · Codemods · CI verification · Visual diffing</dd></div>
-        <div><dt>Status</dt><dd>Driving migration in production</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>"Big-bang rewrite" and "never migrate" are both ways of failing — one loudly, one slowly. The codebase was too large to freeze and too entangled to move screen by screen without knowing what each screen actually depended on.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Approach</h3>
-        <ul class="cs-list">
-          <li><b>Extraction graph.</b> Static analysis over the legacy codebase builds a dependency graph — components, services, state, templates — so migration order is computed from coupling, not guessed from opinions.</li>
-          <li><b>Component mapping.</b> Each legacy component maps to its design-system target with a confidence score; high-confidence mappings are codemodded, low-confidence ones are queued for humans.</li>
-          <li><b>Verification pipeline.</b> Every migrated screen runs behavioural tests plus visual diffs against its legacy twin in CI.</li>
-          <li><b>Parity ledger.</b> A live dashboard of what's migrated, what's proven equivalent, and what's intentionally different — the single artifact that kept stakeholders calm.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">0</div><div class="stat-l">Release freezes during migration</div></div>
-          <div class="stat"><div class="stat-n">Graph-ordered</div><div class="stat-l">Migration sequence, not guesswork</div></div>
-          <div class="stat"><div class="stat-n">Proven</div><div class="stat-l">Behavioural parity per screen, in CI</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Lessons</h3>
-        <p>Migrations are evidence problems. The moment parity became something CI proved rather than something engineers promised, the migration stopped being scary — and therefore stopped being slow.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
-
-<!-- Live Orders -->
-<dialog class="cs" id="cs-liveorders" aria-labelledby="cs-liveorders-title">
-  <div class="cs-scroll">
-    <div class="cs-topbar"><span>08 · Live Orders Dashboard</span><button class="cs-close" data-close>Close</button></div>
-    <div class="cs-inner">
-      <h2 class="cs-title" id="cs-liveorders-title">Race-day energy for order data.</h2>
-      <p class="cs-lede">A realtime order leaderboard inspired by MotoGP timing screens — live rankings, position-change choreography, and enterprise-grade legibility under thousands of updates a minute.</p>
-
-      <dl class="cs-meta-grid">
-        <div><dt>Role</dt><dd>Design &amp; engineering</dd></div>
-        <div><dt>Timeline</dt><dd>2023</dd></div>
-        <div><dt>Stack</dt><dd>React · WebSockets · FLIP animation · Virtualization</dd></div>
-        <div><dt>Status</dt><dd>Live on office screens</dd></div>
-      </dl>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">01</span>Problem</h3>
-        <p>Realtime dashboards usually fail in one of two ways: they update so fast they're unreadable, or they're throttled so hard they're not really live. This one needed to run on a wall, all day, and make a sales floor glance up when something changed.</p>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">02</span>Approach</h3>
-        <ul class="cs-list">
-          <li><b>MotoGP grammar.</b> Position numbers, gap-to-leader, and overtake flashes — a visual language people already read at 300km/h, borrowed for orders per minute.</li>
-          <li><b>FLIP choreography.</b> Rank changes animate as physical overtakes: measure, invert, play. The eye tracks who moved without reading a single number.</li>
-          <li><b>Update batching.</b> WebSocket bursts coalesce into one choreographed reflow per second — live enough to feel instant, calm enough to stay legible.</li>
-          <li><b>GPU-only motion.</b> Transforms and opacity exclusively; the board holds 60fps on a five-year-old TV stick.</li>
-        </ul>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">03</span>Impact</h3>
-        <div class="cs-stats">
-          <div class="stat"><div class="stat-n">60fps</div><div class="stat-l">Under thousands of updates/min</div></div>
-          <div class="stat"><div class="stat-n">All-day</div><div class="stat-l">Wall display, zero babysitting</div></div>
-          <div class="stat"><div class="stat-n">Instant</div><div class="stat-l">Read-at-a-glance rank changes</div></div>
-        </div>
-      </section>
-
-      <section class="cs-section">
-        <h3 class="cs-h"><span class="n">04</span>Lessons</h3>
-        <p>Delight in enterprise software isn't decoration — it's information design with a pulse. People trusted the board because the motion meant something, every time.</p>
-      </section>
-    </div>
-  </div>
-</dialog>
 
 <script type="module" src="./main.js"></script>
 </body>

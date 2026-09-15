@@ -1,24 +1,26 @@
 import { defineConfig } from "vite";
 import { fileURLToPath } from "node:url";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+
+const root = fileURLToPath(new URL("./", import.meta.url));
+const at = (path) => fileURLToPath(new URL(path, import.meta.url));
 
 /**
- * Mirrors Vercel's `cleanUrls` locally so `/ux-audit` resolves the same way
- * in `vite dev`, `vite preview` and production. Without it, MPA mode 404s on
- * the extensionless path and SPA mode silently serves the homepage instead —
- * both of which hide real routing problems until after deploy.
+ * Mirrors Vercel's `cleanUrls` locally so `/ux-audit` and `/work/meetaira`
+ * resolve the same way in `vite dev`, `vite preview` and production. Without
+ * it, MPA mode 404s the extensionless path and SPA mode silently serves the
+ * homepage instead — both of which hide real routing problems until deploy.
  */
 function cleanUrls() {
-  const root = new URL("./", import.meta.url);
-
   const rewrite = (req, _res, next) => {
     const [path, query] = (req.url || "").split("?");
     // Only rewrite when the path names a real page directory. A blanket
     // "no dot means add a slash" rule would also mangle Vite's own
     // internals (/@vite/client, /@id/..., /@fs/...).
     if (path && path !== "/" && !path.endsWith("/") && !path.startsWith("/@")) {
-      const page = new URL(`.${path}/index.html`, root);
-      if (existsSync(page)) req.url = `${path}/${query ? `?${query}` : ""}`;
+      if (existsSync(`${root}${path.slice(1)}/index.html`)) {
+        req.url = `${path}/${query ? `?${query}` : ""}`;
+      }
     }
     next();
   };
@@ -32,20 +34,48 @@ function cleanUrls() {
 }
 
 /**
- * Two static entries. `ux-audit/index.html` builds to `dist/ux-audit/index.html`,
- * which Vercel serves at `/ux-audit` — so a direct visit or a browser refresh
- * on that URL resolves to a real file, with no server involved.
+ * `<!-- @include /partials/site-header.html -->` inlines a shared fragment.
+ * The eight case study pages share one header and one footer this way rather
+ * than carrying eight copies of the nav. Runs `pre`, so included markup goes
+ * through Vite's normal HTML processing in dev and build alike.
  */
+function htmlIncludes() {
+  const INCLUDE = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
+  return {
+    name: "html-includes",
+    transformIndexHtml: {
+      order: "pre",
+      handler: (html) =>
+        html.replace(INCLUDE, (_, file) => readFileSync(`${root}${file.replace(/^\//, "")}`, "utf8")),
+    },
+    configureServer(server) {
+      // partials aren't in the module graph, so reload the page when one changes
+      server.watcher.add(`${root}partials`);
+      server.watcher.on("change", (file) => {
+        if (file.includes("/partials/")) server.ws.send({ type: "full-reload" });
+      });
+    },
+  };
+}
+
+/** Every case study is a real page at /work/<slug>/index.html. */
+const casePages = Object.fromEntries(
+  readdirSync(at("./work"), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && existsSync(at(`./work/${entry.name}/index.html`)))
+    .map((entry) => [`work-${entry.name}`, at(`./work/${entry.name}/index.html`)])
+);
+
 export default defineConfig({
-  // two real pages, not an SPA — this stops the dev server falling back to
+  // real pages, not an SPA — this stops the dev server falling back to
   // index.html and serving the homepage for an unmatched path
   appType: "mpa",
-  plugins: [cleanUrls()],
+  plugins: [cleanUrls(), htmlIncludes()],
   build: {
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL("./index.html", import.meta.url)),
-        uxAudit: fileURLToPath(new URL("./ux-audit/index.html", import.meta.url)),
+        main: at("./index.html"),
+        uxAudit: at("./ux-audit/index.html"),
+        ...casePages,
       },
     },
   },

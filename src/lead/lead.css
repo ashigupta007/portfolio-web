@@ -14,24 +14,7 @@
 }
 
 /* ------------------------------------------------------------
-   1. NAV CTA — the one nav item that asks for something
-   ------------------------------------------------------------ */
-.nav-link.is-cta {
-  color: var(--bg);
-  background: var(--accent);
-  border-radius: 999px;
-  padding: 0.62em 1.25em;
-  margin-left: 0.6rem;
-  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
-}
-.nav-link.is-cta::after { display: none; }
-.nav-link.is-cta:hover { background: var(--ink); color: var(--bg); }
-@media (max-width: 380px) {
-  .nav-link.is-cta { padding: 0.55em 0.85em; margin-left: 0; letter-spacing: 0.1em; }
-}
-
-/* ------------------------------------------------------------
-   2. FORM PRIMITIVES
+   1. FORM PRIMITIVES
    ------------------------------------------------------------ */
 .f-grid {
   display: grid;
@@ -141,7 +124,7 @@
   color: var(--accent);
 }
 /* ------------------------------------------------------------
-   3. CUSTOM SELECT
+   2. CUSTOM SELECT
    A real listbox. The native control renders OS chrome that
    ignores every token on this page.
    ------------------------------------------------------------ */
@@ -218,7 +201,7 @@
 }
 
 /* ------------------------------------------------------------
-   4. MODAL
+   3. MODAL
    ------------------------------------------------------------ */
 dialog.lead {
   width: min(100vw - 2rem, 46rem);

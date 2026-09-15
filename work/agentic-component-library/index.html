@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic Component Library — Case Study · Ashish Gupta</title>
+  <meta name="description" content="A design system delivered simultaneously to React and Angular codebases from a single source of truth — tokens, behaviour contracts, accessibility and performance budgets included." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/agentic-component-library" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/agentic-component-library" />
+  <meta property="og:title" content="Agentic Component Library — One system, two frameworks." />
+  <meta property="og:description" content="A design system delivered simultaneously to React and Angular codebases from a single source of truth — tokens, behaviour contracts, accessibility and performance budgets included." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Agentic Component Library — One system, two frameworks." />
+  <meta name="twitter:description" content="A design system delivered simultaneously to React and Angular codebases from a single source of truth — tokens, behaviour contracts, accessibility and performance budgets included." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">06 / 08 · Agentic Component Library</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">One system, two frameworks.</h1>
+    <p class="cs-lede">A design system delivered simultaneously to React and Angular codebases from a single source of truth — tokens, behaviour contracts, accessibility and performance budgets included.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Design system lead</dd></div>
+      <div><dt>Timeline</dt><dd>2023 — 2025</dd></div>
+      <div><dt>Stack</dt><dd>React · Angular · TypeScript · Design tokens · CI</dd></div>
+      <div><dt>Status</dt><dd>Adopted across product teams</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>An enterprise mid-migration lives in two worlds: new surfaces in React, a decade of Angular still serving customers. Two implementations of every button meant double the bugs, drifting brands, and accessibility that depended on which year a screen was built.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Approach</h2>
+      <ul class="cs-list">
+        <li><b>Tokens as the treaty.</b> Color, type, spacing, motion and state live in one token pipeline; both frameworks consume generated outputs. Design changes land everywhere or nowhere.</li>
+        <li><b>Behaviour contracts.</b> Each component has a framework-agnostic spec — states, keyboard map, ARIA contract — and both implementations are tested against the same spec suite.</li>
+        <li><b>Budgets in CI.</b> Bundle size and interaction latency are budgeted per component; a regression fails the build, not the user.</li>
+        <li><b>Migration tooling.</b> Codemods map legacy component usage onto the system, making adoption a command rather than a quarter.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">1</div><div class="stat-l">Source of truth for both frameworks</div></div>
+        <div class="stat"><div class="stat-n">AA</div><div class="stat-l">Accessibility contract, tested in CI</div></div>
+        <div class="stat"><div class="stat-n">0</div><div class="stat-l">Visual drift between stacks</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Lessons</h2>
+      <p>A design system is a political artifact wearing an engineering costume. The token pipeline and spec suite mattered because they ended arguments — the system became the place where decisions, once made, stayed made.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/angular-migration-framework">
+      <span class="case-next-k">Next case study · 07</span>
+      <span class="case-next-name">Angular Migration Framework</span>
+      <span class="case-next-essence">Migrating a decade of enterprise UI without stopping the ship.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

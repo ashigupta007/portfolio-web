@@ -1,0 +1,119 @@
+/* ============================================================
+   CASE STUDY PAGES — /work/<slug>
+
+   The case study content itself (.cs-title, .cs-section,
+   diagrams, code, stats) is styled in styles.css §8, where it
+   lived when case studies were dialogs. This file is only the
+   page around it: clearance for the fixed nav, the bar that says
+   where you are, and the way on to the next project.
+   ============================================================ */
+
+.case {
+  padding-top: clamp(5.5rem, 11vh, 7rem);
+}
+
+/* same measure as the article, so the bar and the title line up.
+   The bar's border must span the text, not the padded box — otherwise it
+   overhangs the content by one gutter on each side. */
+.case-next { max-width: 980px; }
+.container.case-bar {
+  width: calc(100% - 2 * var(--gutter));
+  max-width: calc(980px - 2 * var(--gutter));
+  padding-inline: 0;
+}
+
+.case-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 1.5rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  min-height: 40px;
+  color: var(--ink-2);
+  transition: color 0.4s var(--ease-out);
+}
+.case-back span { transition: transform 0.45s var(--ease-out); }
+.case-back:hover { color: var(--ink); }
+.case-back:hover span { transform: translateX(-4px); }
+
+.case-index { color: var(--ink-4); }
+
+.case .cs-inner {
+  padding-top: clamp(2.6rem, 7vh, 4.5rem);
+  padding-bottom: clamp(4rem, 9vh, 6rem);
+}
+
+/* ------------------------------------------------------------
+   Next case study
+   ------------------------------------------------------------ */
+.case-next {
+  padding-bottom: clamp(4rem, 10vh, 7rem);
+}
+
+.case-next-link {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  padding: clamp(1.8rem, 4vw, 2.6rem) 3.5rem clamp(1.8rem, 4vw, 2.6rem) 0;
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.case-next-k {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.case-next-name {
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--ink);
+  font-weight: 550;
+  transition: color 0.45s var(--ease-out);
+}
+
+.case-next-essence {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: var(--ink-3);
+}
+
+.case-next-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink-3);
+  transition: transform 0.5s var(--ease-out), color 0.45s var(--ease-out);
+}
+
+.case-next-link:hover .case-next-name,
+.case-next-link:focus-visible .case-next-name { color: var(--accent); }
+.case-next-link:hover .case-next-arrow,
+.case-next-link:focus-visible .case-next-arrow {
+  color: var(--accent);
+  transform: translate(6px, -50%);
+}
+
+@media (max-width: 560px) {
+  .case-index { display: none; }
+  .case-next-link { padding-right: 2.4rem; }
+}

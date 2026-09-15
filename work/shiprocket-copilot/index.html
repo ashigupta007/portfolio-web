@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiprocket Copilot — Case Study · Ashish Gupta</title>
+  <meta name="description" content="A realtime voice and chat copilot embedded in the seller back-office — it retrieves knowledge, streams answers, and executes tools against live order workflows." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/shiprocket-copilot" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/shiprocket-copilot" />
+  <meta property="og:title" content="Shiprocket Copilot — An assistant that does the work." />
+  <meta property="og:description" content="A realtime voice and chat copilot embedded in the seller back-office — it retrieves knowledge, streams answers, and executes tools against live order workflows." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Shiprocket Copilot — An assistant that does the work." />
+  <meta name="twitter:description" content="A realtime voice and chat copilot embedded in the seller back-office — it retrieves knowledge, streams answers, and executes tools against live order workflows." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">03 / 08 · Shiprocket Copilot</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">An assistant that does the work.</h1>
+    <p class="cs-lede">A realtime voice and chat copilot embedded in the seller back-office — it retrieves knowledge, streams answers, and executes tools against live order workflows.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Lead engineer — AI &amp; product</dd></div>
+      <div><dt>Timeline</dt><dd>2023 — 2024</dd></div>
+      <div><dt>Stack</dt><dd>Next.js · NestJS · OpenAI · WebRTC · MCP · RAG</dd></div>
+      <div><dt>Status</dt><dd>Live · 10K+ queries/month</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>Sellers lived in support queues for actions the system could perform in seconds — "where is order 4127", "reschedule this pickup", "why was my COD remittance short". A chatbot that answered questions would have been a FAQ with better manners. The bar was an assistant that finishes the task.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Discovery</h2>
+      <p>Shadowing support conversations produced a taxonomy: roughly seventy percent of queries mapped to twenty tool-shaped actions; the rest needed knowledge retrieval. That split defined the architecture — a tool-execution loop for actions, RAG over help content and seller data for the rest, and one conversational surface over both. A hackathon voice prototype (top-5, Azure OpenAI) proved the voice channel deserved to be first-class, not a gimmick.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Architecture</h2>
+      <div class="cs-diagram">
+        <svg class="dgm" viewBox="0 0 720 230" role="img" aria-label="Copilot architecture: chat and voice clients connect through a realtime edge to the orchestrator, which runs an LLM tool loop against order APIs and a retrieval index">
+          <rect class="d-box" x="16" y="26" width="120" height="56" rx="3"/>
+          <text class="d-label" x="34" y="51">CHAT UI</text>
+          <text class="d-sub" x="34" y="67">STREAMED</text>
+          <rect class="d-box" x="16" y="126" width="120" height="56" rx="3"/>
+          <text class="d-label" x="34" y="151">VOICE</text>
+          <text class="d-sub" x="34" y="167">WEBRTC</text>
+          <rect class="d-box" x="196" y="76" width="120" height="56" rx="3"/>
+          <text class="d-label" x="214" y="101">RT EDGE</text>
+          <text class="d-sub" x="214" y="117">WS · SFU</text>
+          <rect class="d-box-hi" x="376" y="76" width="130" height="56" rx="3"/>
+          <text class="d-label" x="394" y="101">ORCHESTRATOR</text>
+          <text class="d-sub" x="394" y="117">LLM TOOL LOOP</text>
+          <rect class="d-box" x="566" y="16" width="130" height="52" rx="3"/>
+          <text class="d-label" x="584" y="39">ORDER APIS</text>
+          <text class="d-sub" x="584" y="55">GUARDED WRITES</text>
+          <rect class="d-box" x="566" y="88" width="130" height="52" rx="3"/>
+          <text class="d-label" x="584" y="111">KNOWLEDGE</text>
+          <text class="d-sub" x="584" y="127">RAG INDEX</text>
+          <rect class="d-box" x="566" y="160" width="130" height="52" rx="3"/>
+          <text class="d-label" x="584" y="183">AUDIT LOG</text>
+          <text class="d-sub" x="584" y="199">EVERY TOOL CALL</text>
+          <path class="d-flow" d="M136 54 L196 90 M136 154 L196 118 M316 104 H376 M506 92 L566 42 M506 104 H566 M506 116 L566 186"/>
+        </svg>
+      </div>
+      <div style="margin-top:1.6rem">
+        <pre class="code"><span class="c">// the loop that turns answers into actions</span>
+<span class="k">while</span> (!turn.done) {
+  <span class="k">const</span> step = <span class="k">await</span> model.stream({ messages, tools });
+  <span class="k">if</span> (step.toolCall) {
+    <span class="c">// risky writes (refunds, cancellations) require confirm-first</span>
+    <span class="k">const</span> result = <span class="k">await</span> <span class="f">execute</span>(step.toolCall, { confirm: isRisky(step) });
+    messages.push(result);
+  } <span class="k">else</span> turn.done = <span class="k">true</span>;
+}</pre>
+        <p class="code-caption">Tool-execution loop — simplified</p>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Engineering</h2>
+      <ul class="cs-list">
+        <li><b>Confirm-first writes.</b> Reads execute silently; mutations render a preview card the seller approves. Trust was designed, not assumed.</li>
+        <li><b>One pipeline, two channels.</b> Voice and chat share the orchestrator — voice adds STT partials in and sentence-chunked TTS out, nothing forks.</li>
+        <li><b>Retrieval with receipts.</b> Every knowledge answer cites its source document inline; unverifiable answers are refused by policy.</li>
+        <li><b>Full audit trail.</b> Every tool call is logged with inputs, outputs and the conversation that authorized it.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">05</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">10K+</div><div class="stat-l">Queries handled monthly</div></div>
+        <div class="stat"><div class="stat-n">70%</div><div class="stat-l">Of intents resolved by tools, not text</div></div>
+        <div class="stat"><div class="stat-n">2</div><div class="stat-l">Channels, one orchestration pipeline</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">06</span>Lessons</h2>
+      <p>The hard part of an agent isn't the loop — it's the social contract around writes. Preview cards and audit logs did more for adoption than any model upgrade. People don't adopt intelligence; they adopt accountability.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/dockyard">
+      <span class="case-next-k">Next case study · 04</span>
+      <span class="case-next-name">Dockyard</span>
+      <span class="case-next-essence">The platform every AI company builds eventually — built deliberately.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

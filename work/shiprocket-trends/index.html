@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiprocket Trends — Case Study · Ashish Gupta</title>
+  <meta name="description" content="A self-serve analytics platform for e-commerce sellers — interactive dashboards at SKU and city granularity, with an AI insight layer that says what the charts mean." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/shiprocket-trends" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/shiprocket-trends" />
+  <meta property="og:title" content="Shiprocket Trends — Analytics that answers questions." />
+  <meta property="og:description" content="A self-serve analytics platform for e-commerce sellers — interactive dashboards at SKU and city granularity, with an AI insight layer that says what the charts mean." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Shiprocket Trends — Analytics that answers questions." />
+  <meta name="twitter:description" content="A self-serve analytics platform for e-commerce sellers — interactive dashboards at SKU and city granularity, with an AI insight layer that says what the charts mean." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">02 / 08 · Shiprocket Trends</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">Analytics that answers questions.</h1>
+    <p class="cs-lede">A self-serve analytics platform for e-commerce sellers — interactive dashboards at SKU and city granularity, with an AI insight layer that says what the charts mean.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Product engineer — end to end</dd></div>
+      <div><dt>Timeline</dt><dd>2022, evolved since</dd></div>
+      <div><dt>Stack</dt><dd>React · TypeScript · NestJS · Charting · LLM insights</dd></div>
+      <div><dt>Status</dt><dd>Live in production</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>Sellers were exporting spreadsheets to answer basic questions: which SKU is growing, which city is slipping, what changed this week. Analysts became a bottleneck; decisions ran days behind the data. The existing tools rendered charts — they didn't answer questions.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Design</h2>
+      <p>The organizing principle: every screen must answer a question a seller actually asks, in their words, in under three seconds. Dashboards were designed backwards from those questions. Filters compose instead of stacking; drill-downs preserve context; and an insight strip narrates each view — "West-zone prepaid orders up 23%, driven by two SKUs" — so the reading is done for you.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Architecture</h2>
+      <div class="cs-diagram">
+        <svg class="dgm" viewBox="0 0 720 190" role="img" aria-label="Trends architecture: event pipeline feeds aggregation store, queried by a query layer that powers dashboards, with an LLM insight engine narrating each view">
+          <rect class="d-box" x="16" y="66" width="120" height="60" rx="3"/>
+          <text class="d-label" x="34" y="92">EVENTS</text>
+          <text class="d-sub" x="34" y="108">ORDERS · SHIPMENTS</text>
+          <rect class="d-box" x="186" y="66" width="130" height="60" rx="3"/>
+          <text class="d-label" x="204" y="92">AGGREGATION</text>
+          <text class="d-sub" x="204" y="108">SKU × CITY × DAY</text>
+          <rect class="d-box" x="366" y="66" width="120" height="60" rx="3"/>
+          <text class="d-label" x="384" y="92">QUERY LAYER</text>
+          <text class="d-sub" x="384" y="108">CACHED · &lt;300MS</text>
+          <rect class="d-box" x="536" y="16" width="120" height="60" rx="3"/>
+          <text class="d-label" x="554" y="42">DASHBOARD</text>
+          <text class="d-sub" x="554" y="58">REACT · VIRTUALIZED</text>
+          <rect class="d-box-hi" x="536" y="116" width="120" height="60" rx="3"/>
+          <text class="d-label" x="554" y="142">INSIGHT ENGINE</text>
+          <text class="d-sub" x="554" y="158">LLM NARRATION</text>
+          <path class="d-flow" d="M136 96 H186 M316 96 H366 M486 86 L536 46 M486 106 L536 146"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Engineering</h2>
+      <ul class="cs-list">
+        <li><b>Pre-aggregation over cleverness.</b> The heaviest questions were known in advance, so the pipeline materializes SKU × city × day rollups — the UI never waits on a raw scan.</li>
+        <li><b>Perceived performance.</b> Skeleton-free rendering: charts draw from cache immediately, then reconcile. No spinners on the money screens.</li>
+        <li><b>Virtualized everything.</b> Ten-thousand-row tables filter and sort at 60fps because only what's visible exists.</li>
+        <li><b>Insight guardrails.</b> The LLM narrates only computed aggregates — it never invents numbers; every claim links to the chart that proves it.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">05</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">~80%</div><div class="stat-l">Less manual spreadsheet work</div></div>
+        <div class="stat"><div class="stat-n">SKU × City</div><div class="stat-l">Granularity, self-serve</div></div>
+        <div class="stat"><div class="stat-n">&lt;3s</div><div class="stat-l">Question to answer, p95</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">06</span>Lessons</h2>
+      <p>Enterprise users don't want more data — they want fewer decisions. The AI layer succeeded precisely because it was constrained: narration, never invention. Trust, once earned, made everything else adopted.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/shiprocket-copilot">
+      <span class="case-next-k">Next case study · 03</span>
+      <span class="case-next-name">Shiprocket Copilot</span>
+      <span class="case-next-essence">An assistant that does the work, not just answers questions.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

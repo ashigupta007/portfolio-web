@@ -160,23 +160,132 @@ function wireFindings(scope) {
   });
 }
 
-/* ---- pricing ----------------------------------------------- */
-function renderPricing(mount) {
-  mount.innerHTML = `
-    <div class="price-grid">
-      ${PRICING.map(
-        (tier) => `
-        <article class="price${tier.featured ? " is-featured" : ""}">
-          <h3 class="price-name">${esc(tier.name)}</h3>
-          <p class="price-label">${esc(tier.priceLabel)}</p>
-          <p class="price-value">${esc(tier.price)}</p>
-          <p class="price-summary">${esc(tier.summary)}</p>
-          <ul class="price-points">
-            ${tier.points.map((p) => `<li>${esc(p)}</li>`).join("")}
-          </ul>
+/* ---- pricing -----------------------------------------------
+   One config, two renderings. A three-column comparison table is
+   the clearest way to read two tiers side by side — and unreadable
+   at 375px. So wide screens get a real <table> and narrow screens
+   get one card per tier. CSS shows exactly one; the hidden one is
+   display:none, so assistive tech never hears both.
+   ------------------------------------------------------------ */
+const cell = (value) =>
+  value === true
+    ? `<span class="pt-yes" aria-hidden="true">✓</span><span class="visually-hidden">Included</span>`
+    : value === false
+      ? `<span class="pt-no" aria-hidden="true">—</span><span class="visually-hidden">Not included</span>`
+      : esc(value);
+
+const leadSource = (id) => `pricing_${id.replace(/-/g, "_")}`;
+
+function pricingTable() {
+  const { tiers, groups, priceLabel } = PRICING;
+  const feat = (t) => (t.featured ? " is-featured" : "");
+
+  return `
+    <div class="pt-wrap">
+      <table class="pt">
+        <caption class="visually-hidden">Comparison of ${tiers.map((t) => esc(t.name)).join(" and ")}</caption>
+        <thead>
+          <tr>
+            <td class="pt-corner"></td>
+            ${tiers.map((t) => `<th scope="col" class="pt-tier${feat(t)}">${esc(t.name)}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pt-price-row">
+            <th scope="row">${esc(priceLabel)}</th>
+            ${tiers.map((t) => `<td class="${feat(t).trim()}"><span class="pt-price">${esc(t.price)}</span></td>`).join("")}
+          </tr>
+          <tr class="pt-best-row">
+            <th scope="row">Best for</th>
+            ${tiers.map((t) => `<td class="${feat(t).trim()}">${esc(t.bestFor)}</td>`).join("")}
+          </tr>
+          ${groups
+            .map(
+              (g) => `
+            <tr class="pt-group">
+              <th scope="rowgroup">${esc(g.title)}</th>
+              ${tiers.map((t) => `<td class="${feat(t).trim()}"></td>`).join("")}
+            </tr>
+            ${g.rows
+              .map(
+                (r) => `
+              <tr>
+                <th scope="row">${esc(r.label)}</th>
+                ${r.values.map((v, i) => `<td class="${feat(tiers[i]).trim()}">${cell(v)}</td>`).join("")}
+              </tr>`
+              )
+              .join("")}`
+            )
+            .join("")}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="pt-corner"></td>
+            ${tiers
+              .map(
+                (t) => `
+              <td class="${feat(t).trim()}">
+                <a class="btn-pill${t.featured ? " is-primary" : ""}" href="#enquiry" data-open-lead="${leadSource(t.id)}">${esc(t.cta)}</a>
+              </td>`
+              )
+              .join("")}
+          </tr>
+        </tfoot>
+      </table>
+    </div>`;
+}
+
+function pricingCards() {
+  const { tiers, groups, priceLabel } = PRICING;
+  return `
+    <div class="pc-list">
+      ${tiers
+        .map(
+          (t, i) => `
+        <article class="pc${t.featured ? " is-featured" : ""}">
+          <h3 class="pc-name">${esc(t.name)}</h3>
+          <p class="pc-label">${esc(priceLabel)}</p>
+          <p class="pc-price">${esc(t.price)}</p>
+          <p class="pc-best">Best for ${esc(t.bestFor.charAt(0).toLowerCase() + t.bestFor.slice(1))}</p>
+          ${groups
+            .map(
+              (g) => `
+            <h4 class="pc-group">${esc(g.title)}</h4>
+            <dl class="pc-rows">
+              ${g.rows
+                .map(
+                  (r) => `
+                <div class="${r.values[i] === false ? "is-absent" : ""}">
+                  <dt>${esc(r.label)}</dt>
+                  <dd>${cell(r.values[i])}</dd>
+                </div>`
+                )
+                .join("")}
+            </dl>`
+            )
+            .join("")}
+          <a class="btn-pill${t.featured ? " is-primary" : ""} pc-cta" href="#enquiry" data-open-lead="${leadSource(t.id)}">${esc(t.cta)}</a>
         </article>`
-      ).join("")}
-    </div>
+        )
+        .join("")}
+    </div>`;
+}
+
+function renderPricing(mount) {
+  const { custom } = PRICING;
+  mount.innerHTML = `
+    ${pricingTable()}
+    ${pricingCards()}
+    <article class="pt-custom">
+      <div class="pt-custom-copy">
+        <h3 class="pt-custom-name">${esc(custom.name)}</h3>
+        <p class="pt-custom-summary">${esc(custom.summary)}</p>
+      </div>
+      <div class="pt-custom-side">
+        <span class="pt-custom-price">${esc(custom.price)}</span>
+        <a class="btn-pill" href="#enquiry" data-open-lead="pricing_deep_audit">${esc(custom.cta)}</a>
+      </div>
+    </article>
     <p class="price-note">${esc(PRICING_NOTE)}</p>`;
 }
 

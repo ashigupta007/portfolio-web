@@ -89,6 +89,9 @@ export function openLead(source = "cta") {
   const el = build();
   if (el.open) return;
   opened = true;
+  // record where the enquiry started (e.g. pricing_product_audit, dwell) so
+  // the lead arrives in Formspree already knowing which tier caught their eye
+  el.querySelector("form").dataset.leadSource = source;
   el.showModal();
   document.documentElement.style.overflow = "hidden";
   track("ux_audit_lead_opened", { source });

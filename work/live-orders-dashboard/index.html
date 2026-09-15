@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Orders Dashboard — Case Study · Ashish Gupta</title>
+  <meta name="description" content="A realtime order leaderboard inspired by MotoGP timing screens — live rankings, position-change choreography, and enterprise-grade legibility under thousands of updates a minute." />
+
+  <link rel="canonical" href="https://ashish-gupta.com/work/live-orders-dashboard" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ashish-gupta.com/work/live-orders-dashboard" />
+  <meta property="og:title" content="Live Orders Dashboard — Race-day energy for order data." />
+  <meta property="og:description" content="A realtime order leaderboard inspired by MotoGP timing screens — live rankings, position-change choreography, and enterprise-grade legibility under thousands of updates a minute." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Live Orders Dashboard — Race-day energy for order data." />
+  <meta name="twitter:description" content="A realtime order leaderboard inspired by MotoGP timing screens — live rankings, position-change choreography, and enterprise-grade legibility under thousands of updates a minute." />
+
+  <!-- Stylesheets live here, not in the partial: if the include step ever
+       isn't applied (a dev server started before a vite.config.js change),
+       the page loses its nav — never all of its styles. Root-absolute: every
+       case page lives two levels deep. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/work/case.css" />
+
+  <!-- @include /partials/case-head.html -->
+</head>
+<body class="case-page">
+
+<!-- @include /partials/site-header.html -->
+
+<main id="main" class="case">
+  <div class="container case-bar">
+    <a class="case-back" href="/#work" data-case-back><span aria-hidden="true">←</span> All work</a>
+    <span class="case-index">08 / 08 · Live Orders Dashboard</span>
+  </div>
+
+  <article class="cs-inner" aria-labelledby="case-title">
+    <h1 class="cs-title" id="case-title">Race-day energy for order data.</h1>
+    <p class="cs-lede">A realtime order leaderboard inspired by MotoGP timing screens — live rankings, position-change choreography, and enterprise-grade legibility under thousands of updates a minute.</p>
+
+    <dl class="cs-meta-grid">
+      <div><dt>Role</dt><dd>Design &amp; engineering</dd></div>
+      <div><dt>Timeline</dt><dd>2023</dd></div>
+      <div><dt>Stack</dt><dd>React · WebSockets · FLIP animation · Virtualization</dd></div>
+      <div><dt>Status</dt><dd>Live on office screens</dd></div>
+    </dl>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">01</span>Problem</h2>
+      <p>Realtime dashboards usually fail in one of two ways: they update so fast they're unreadable, or they're throttled so hard they're not really live. This one needed to run on a wall, all day, and make a sales floor glance up when something changed.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">02</span>Approach</h2>
+      <ul class="cs-list">
+        <li><b>MotoGP grammar.</b> Position numbers, gap-to-leader, and overtake flashes — a visual language people already read at 300km/h, borrowed for orders per minute.</li>
+        <li><b>FLIP choreography.</b> Rank changes animate as physical overtakes: measure, invert, play. The eye tracks who moved without reading a single number.</li>
+        <li><b>Update batching.</b> WebSocket bursts coalesce into one choreographed reflow per second — live enough to feel instant, calm enough to stay legible.</li>
+        <li><b>GPU-only motion.</b> Transforms and opacity exclusively; the board holds 60fps on a five-year-old TV stick.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">03</span>Impact</h2>
+      <div class="cs-stats">
+        <div class="stat"><div class="stat-n">60fps</div><div class="stat-l">Under thousands of updates/min</div></div>
+        <div class="stat"><div class="stat-n">All-day</div><div class="stat-l">Wall display, zero babysitting</div></div>
+        <div class="stat"><div class="stat-n">Instant</div><div class="stat-l">Read-at-a-glance rank changes</div></div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2 class="cs-h"><span class="n">04</span>Lessons</h2>
+      <p>Delight in enterprise software isn't decoration — it's information design with a pulse. People trusted the board because the motion meant something, every time.</p>
+    </section>
+      </article>
+
+  <nav class="container case-next" aria-label="Next case study">
+    <a class="case-next-link" href="/work/meetaira">
+      <span class="case-next-k">Next case study · 01</span>
+      <span class="case-next-name">MeetAira</span>
+      <span class="case-next-essence">A companion that listens, remembers, and speaks — in real time.</span>
+      <span class="case-next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</main>
+
+<!-- @include /partials/site-footer.html -->
+
+<script type="module" src="/src/case/entry.js"></script>
+</body>
+</html>

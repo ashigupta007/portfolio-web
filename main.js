@@ -8,7 +8,6 @@
 import { onceVisible } from "./src/core/motion.js";
 import { initReveals } from "./src/core/reveal.js";
 import { initNav, initMenu } from "./src/core/nav.js";
-import { initDialogs } from "./src/core/dialogs.js";
 import { initMagnetic } from "./src/core/magnetic.js";
 import { initClickTracking } from "./src/core/analytics.js";
 import { initLeadModal } from "./src/lead/modal.js";
@@ -24,7 +23,6 @@ function init() {
   initReveals();
   initNav();
   initMenu();
-  initDialogs();
   initTimeline();
   initPhilosophy();
   initPhilosophyEvidence();

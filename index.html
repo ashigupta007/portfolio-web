@@ -8,7 +8,10 @@
   <meta name="author" content="Ashish Gupta" />
   <meta name="theme-color" content="#090909" />
 
+  <link rel="canonical" href="https://ashish-gupta.com/" />
+
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ashish-gupta.com/" />
   <meta property="og:title" content="Ashish Gupta — Product Engineer" />
   <meta property="og:description" content="Building AI-native products people actually want to use. From product strategy and UX to distributed systems and AI infrastructure." />
   <meta name="twitter:card" content="summary" />
@@ -18,6 +21,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090909'/%3E%3Ccircle cx='24' cy='40' r='5' fill='%23c9b08a'/%3E%3Cpath d='M24 18 40 46M40 18v28' stroke='%23f2efe9' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
 
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./demos.css" />
   <noscript>
     <style>
       [data-reveal], [data-split], .hero-eyebrow, .hero-positioning, .hero-statement,
@@ -83,9 +87,10 @@
       <ul class="nav-links">
         <li><a class="nav-link" href="#work">Work</a></li>
         <li><a class="nav-link" href="#philosophy">Philosophy</a></li>
-        <li><a class="nav-link" href="#experience">Experience</a></li>
+        <li><a class="nav-link" href="#lab">Lab</a></li>
         <li><a class="nav-link" href="#about">About</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-cta-item"><a class="nav-link is-cta" href="/ux-audit" data-track="ux_audit_nav_clicked">UX Audit <span aria-hidden="true">↗</span></a></li>
       </ul>
     </nav>
     <button class="menu-btn" id="menu-open" aria-haspopup="dialog">Menu</button>
@@ -102,9 +107,14 @@
       <li style="--i:0"><a class="menu-link" href="#work"><span>01</span>Work</a></li>
       <li style="--i:1"><a class="menu-link" href="#philosophy"><span>02</span>Philosophy</a></li>
       <li style="--i:2"><a class="menu-link" href="#experience"><span>03</span>Experience</a></li>
-      <li style="--i:3"><a class="menu-link" href="#about"><span>04</span>About</a></li>
-      <li style="--i:4"><a class="menu-link" href="#contact"><span>05</span>Contact</a></li>
+      <li style="--i:3"><a class="menu-link" href="#lab"><span>04</span>Lab</a></li>
+      <li style="--i:4"><a class="menu-link" href="#about"><span>05</span>About</a></li>
+      <li style="--i:5"><a class="menu-link" href="#contact"><span>06</span>Contact</a></li>
     </ul>
+    <a class="menu-aside" href="/ux-audit" data-track="ux_audit_nav_clicked">
+      <span>UX Audit for SaaS products</span>
+      <span aria-hidden="true">↗</span>
+    </a>
   </div>
 </dialog>
 
@@ -122,9 +132,70 @@
         </h1>
         <p class="hero-positioning">Building AI-native products people <span class="serif-accent">actually want</span> to use.</p>
         <p class="hero-statement">From conversational AI and intelligent analytics to realtime systems and developer platforms — I design products where the engineering disappears behind exceptional experiences.</p>
+
+        <div class="hero-actions">
+          <a class="btn-pill is-primary" data-magnetic href="/ux-audit" data-open-lead="home_hero">Book a UX audit call</a>
+          <a class="btn-pill" data-magnetic href="#work">See selected work</a>
+        </div>
       </div>
-      <div class="hero-canvas-wrap" role="img" aria-label="A slowly rotating geometric lattice — an abstract sculpture of an AI system">
-        <canvas id="sculpture"></canvas>
+      <div class="hero-canvas-wrap is-machine">
+        <div class="machine" id="machine" role="img"
+             aria-label="A live trace of the kind of system I build: a spoken sentence becomes a transcript, an agent plans, a tool runs against live data, and an interface renders the answer — 940 milliseconds end to end.">
+          <div class="machine-head">
+            <span class="machine-kind">Runtime trace</span>
+            <span class="machine-live"><i aria-hidden="true"></i>voice → interface</span>
+          </div>
+
+          <ol class="machine-rail" aria-hidden="true">
+            <li class="machine-node" data-node="voice"><i></i><span>Voice</span></li>
+            <li class="machine-node" data-node="transcript"><i></i><span>Transcript</span></li>
+            <li class="machine-node" data-node="agent"><i></i><span>Agent</span></li>
+            <li class="machine-node" data-node="tool"><i></i><span>Tool</span></li>
+            <li class="machine-node" data-node="interface"><i></i><span>Interface</span></li>
+          </ol>
+
+          <div class="machine-stage" aria-hidden="true">
+            <div class="machine-panel" data-panel="voice">
+              <canvas class="machine-wave" data-machine-wave></canvas>
+              <p class="machine-note">On-device endpointing · barge-in enabled</p>
+            </div>
+
+            <div class="machine-panel" data-panel="transcript">
+              <p class="machine-type">how much COD is pending for Bengaluru this week</p>
+              <p class="machine-note">Streaming partials · 0.2 real-time factor</p>
+            </div>
+
+            <div class="machine-panel" data-panel="agent">
+              <ul class="machine-reason">
+                <li><span>resolve</span> city → Bengaluru</li>
+                <li><span>resolve</span> window → last 7 days</li>
+                <li><span>select</span> tool → cod_pending</li>
+              </ul>
+            </div>
+
+            <div class="machine-panel" data-panel="tool">
+              <code class="machine-call">cod_pending(<em>city</em>: "BLR", <em>window</em>: "7d")</code>
+              <p class="machine-note">Signed · scoped to the seller's own orders · 128 ms</p>
+            </div>
+
+            <div class="machine-panel" data-panel="interface">
+              <div class="machine-result">
+                <span class="machine-result-k">COD pending · 7d</span>
+                <span class="machine-result-v">₹4,82,600</span>
+              </div>
+              <div class="machine-bars">
+                <i style="--h:38%"></i><i style="--h:56%"></i><i style="--h:44%"></i>
+                <i style="--h:72%"></i><i style="--h:61%"></i><i style="--h:88%"></i>
+                <i style="--h:79%"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="machine-foot">
+            <span class="machine-stage-name" data-machine-stage-name>voice</span>
+            <span class="machine-clock" data-machine-clock>0 ms</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -159,26 +230,39 @@
 
     <div class="work-list">
 
-      <!-- 01 · MeetAira -->
-      <article class="work-row" aria-labelledby="p1-title">
+      <!-- 01 · MeetAira — phone composition, one live exchange -->
+      <article class="work-row is-phone" aria-labelledby="p1-title">
         <div class="work-figure" data-reveal="mask">
-          <div class="figure-frame">
-            <svg class="art" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
-                 data-image-prompt="Cinematic macro photograph of concentric glass ripples on a black reflective surface, a single warm point of light at the center, ultra-minimal, charcoal and champagne tones, premium product photography, 8k">
-              <g class="a-drift">
-                <circle class="a-faint" cx="400" cy="200" r="44"/>
-                <circle class="a-faint" cx="400" cy="200" r="88"/>
-                <circle class="a-line a-pulse" cx="400" cy="200" r="132"/>
-                <circle class="a-faint" cx="400" cy="200" r="176"/>
-                <circle class="a-warm a-pulse" cx="400" cy="200" r="220" style="animation-delay:-3s"/>
-                <circle class="a-faint" cx="400" cy="200" r="264"/>
-              </g>
-              <path class="a-warm a-dash" d="M40 200 Q 90 140 140 200 T 240 200 Q 265 120 290 200 T 390 200 Q 440 170 490 200 T 600 200"/>
-              <circle class="a-warm-dot" cx="400" cy="200" r="3.5"/>
-              <circle class="a-dot" cx="140" cy="200" r="2"/>
-              <circle class="a-dot" cx="290" cy="200" r="2"/>
-              <text class="a-label" x="40" y="368">REALTIME VOICE · STT → LLM → TTS · SUB-SECOND</text>
-            </svg>
+          <div class="demo-frame is-stage-phone">
+            <div class="phone" data-demo="meetaira" data-aira-tone="idle">
+              <div class="phone-shell">
+                <div class="phone-bar">
+                  <span class="phone-title">Aira</span>
+                  <span class="phone-state" data-aira-state>Idle</span>
+                </div>
+
+                <div class="aira-face" data-aira-face>
+                  <svg viewBox="0 0 120 120" aria-hidden="true">
+                    <circle class="aira-halo" cx="60" cy="60" r="46" />
+                    <circle class="aira-halo" cx="60" cy="60" r="34" />
+                    <path class="aira-arc" d="M28 60a32 32 0 0 1 64 0" />
+                    <path class="aira-arc is-low" d="M36 68a24 24 0 0 0 48 0" />
+                    <circle class="aira-core" cx="60" cy="60" r="7" />
+                  </svg>
+                  <span class="aira-mood">mood · <b data-aira-mood>calm</b></span>
+                </div>
+
+                <div class="aira-thread">
+                  <p class="aira-msg is-user" data-aira-msg="user">Long day. I don't really want to talk about it.</p>
+                  <p class="aira-msg is-bot" data-aira-msg="bot">Then we won't. I'll just stay here a while.</p>
+                </div>
+
+                <div class="aira-wave" data-aira-wave aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+            </div>
           </div>
           <p class="figure-caption"><span>MeetAira — character platform</span><span>2024 — 25</span></p>
         </div>
@@ -195,24 +279,58 @@
       </article>
 
       <!-- 02 · Shiprocket Trends -->
-      <article class="work-row" aria-labelledby="p2-title">
+      <article class="work-row is-wide" aria-labelledby="p2-title">
         <div class="work-figure" data-reveal="mask">
-          <div class="figure-frame">
-            <svg class="art" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
-                 data-image-prompt="Architectural photograph of thin illuminated lines rising across a dark charcoal wall like a minimalist stock chart sculpture, warm brass accents, museum lighting, editorial, 8k">
-              <g class="a-faint">
-                <path d="M60 60 H580 M60 130 H580 M60 200 H580 M60 270 H580 M60 340 H580"/>
-                <path d="M60 60 V340 M190 60 V340 M320 60 V340 M450 60 V340 M580 60 V340"/>
-              </g>
-              <path class="a-line" d="M60 320 L140 300 L220 310 L300 260 L380 240 L460 180 L540 150 L580 130"/>
-              <path class="a-warm a-dash" d="M60 330 L140 320 L220 280 L300 285 L380 210 L460 150 L540 110 L580 80"/>
-              <g class="a-drift-2">
-                <circle class="a-warm-dot" cx="460" cy="150" r="3.5"/>
-                <circle class="a-dot" cx="300" cy="260" r="2.5"/>
-                <circle class="a-dot" cx="540" cy="150" r="2.5"/>
-              </g>
-              <text class="a-label" x="60" y="368">SKU × CITY × TIME · AI INSIGHT LAYER</text>
-            </svg>
+          <div class="demo-frame is-stage-dash">
+            <div class="dash" data-demo="trends">
+              <div class="dash-bar">
+                <span class="dash-name">Trends · SKU × City × Time</span>
+                <div class="dash-chips">
+                  <span class="dash-chip" data-trends-chip>7d</span>
+                  <span class="dash-chip" data-trends-chip>30d</span>
+                  <span class="dash-chip" data-trends-chip>QTD</span>
+                </div>
+              </div>
+
+              <div class="dash-kpis">
+                <div class="dash-kpi">
+                  <span class="dash-k">Net revenue</span>
+                  <span class="dash-v" data-trends-kpi>₹12.4L</span>
+                  <span class="dash-d" data-trends-delta data-dir="up">▲ 4.2%</span>
+                </div>
+                <div class="dash-kpi">
+                  <span class="dash-k">RTO cost</span>
+                  <span class="dash-v">₹1.08L</span>
+                  <span class="dash-d" data-dir="down">▼ 2.1%</span>
+                </div>
+                <div class="dash-kpi is-quiet">
+                  <span class="dash-k">Active SKUs</span>
+                  <span class="dash-v">2,914</span>
+                  <span class="dash-d" data-dir="up">▲ 18</span>
+                </div>
+              </div>
+
+              <div class="dash-chart">
+                <!-- uniform scaling: preserveAspectRatio="none" would stretch the
+                     head dot into an ellipse and thin the stroke unevenly -->
+                <svg viewBox="-8 -6 328 80" aria-hidden="true">
+                  <g class="dash-grid">
+                    <line x1="-8" y1="16" x2="320" y2="16" /><line x1="-8" y1="42" x2="320" y2="42" />
+                    <line x1="-8" y1="68" x2="320" y2="68" />
+                  </g>
+                  <g data-trends-shift>
+                    <polygon class="dash-area" data-trends-area points="" />
+                    <polyline class="dash-line" data-trends-line points="" vector-effect="non-scaling-stroke" />
+                    <circle class="dash-head" data-trends-head r="3" />
+                  </g>
+                </svg>
+              </div>
+
+              <div class="dash-ask">
+                <p class="dash-q"><span aria-hidden="true">›</span> <em data-trends-question></em></p>
+                <p class="dash-a" data-trends-answer></p>
+              </div>
+            </div>
           </div>
           <p class="figure-caption"><span>Shiprocket Trends — analytics platform</span><span>2022</span></p>
         </div>
@@ -229,26 +347,60 @@
       </article>
 
       <!-- 03 · Shiprocket Copilot -->
-      <article class="work-row" aria-labelledby="p3-title">
+      <article class="work-row is-trace" aria-labelledby="p3-title">
         <div class="work-figure" data-reveal="mask">
-          <div class="figure-frame">
-            <svg class="art" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
-                 data-image-prompt="Premium dark UI still-life: a chain of small glass tiles connected by hairline light traces on charcoal, one tile glowing warm, depth of field, cinematic product render, 8k">
-              <path class="a-warm a-dash" d="M60 120 Q 80 90 100 120 T 140 120 T 180 120"/>
-              <g>
-                <rect class="a-line" x="60" y="180" width="100" height="44" rx="3"/>
-                <rect class="a-line" x="200" y="180" width="100" height="44" rx="3"/>
-                <rect class="a-warm a-pulse" x="340" y="180" width="120" height="44" rx="3"/>
-                <rect class="a-line" x="500" y="180" width="90" height="44" rx="3"/>
-              </g>
-              <path class="a-faint" d="M160 202 H200 M300 202 H340 M460 202 H500"/>
-              <path class="a-warm a-dash" d="M400 224 V280 H120 V224"/>
-              <text class="a-label" x="72" y="206">INTENT</text>
-              <text class="a-label" x="212" y="206">PLAN</text>
-              <text class="a-label" x="352" y="206">TOOL · ORDERS.GET</text>
-              <text class="a-label" x="512" y="206">CONFIRM</text>
-              <text class="a-label" x="60" y="368">VOICE + CHAT · TOOL EXECUTION ON LIVE WORKFLOWS</text>
-            </svg>
+          <div class="demo-frame is-stage-trace">
+            <div class="trace" data-demo="copilot" data-tool-state="idle">
+              <div class="trace-bar">
+                <span class="trace-session">Copilot · seller session</span>
+                <span class="trace-badge">agentic</span>
+              </div>
+
+              <div class="trace-body">
+                <div class="trace-step is-user" data-trace-step="request">
+                  <span class="trace-who">Seller</span>
+                  <p>Show my upcoming COD remittance.</p>
+                </div>
+
+                <div class="trace-step" data-trace-step="reason">
+                  <span class="trace-who">Copilot</span>
+                  <p class="trace-think">Wants the next payout cycle, not the historical ledger. Calling the remittance tool.</p>
+                </div>
+
+                <div class="trace-step is-tool" data-trace-step="tool">
+                  <div class="trace-tool">
+                    <span class="trace-tool-name">cod_remittance_tool</span>
+                    <span class="trace-tool-status" data-trace-tool-status>calling</span>
+                    <span class="trace-tool-time" data-trace-tool-time></span>
+                  </div>
+                  <code class="trace-args">{ seller_id: "•••", cycle: "next", limit: 3 }</code>
+                </div>
+
+                <div class="trace-step" data-trace-step="result">
+                  <table class="trace-table">
+                    <caption class="visually-hidden">Upcoming COD remittance cycles returned by the tool</caption>
+                    <thead>
+                      <tr><th scope="col">Payout</th><th scope="col">Orders</th><th scope="col">Amount</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr data-trace-row><td>Fri, 12 Sep</td><td>318</td><td>₹4,82,600</td></tr>
+                      <tr data-trace-row><td>Tue, 16 Sep</td><td>204</td><td>₹3,11,940</td></tr>
+                      <tr data-trace-row><td>Fri, 19 Sep</td><td>176</td><td>₹2,64,180</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="trace-step is-action" data-trace-step="action">
+                  <span class="trace-who">Action</span>
+                  <p>Opened <b>Finance → Remittance</b> and filtered it to the next cycle.</p>
+                </div>
+
+                <div class="trace-step" data-trace-step="summary">
+                  <span class="trace-who">Copilot</span>
+                  <p>₹4,82,600 lands Friday across 318 COD orders. Want it as a CSV?</p>
+                </div>
+              </div>
+            </div>
           </div>
           <p class="figure-caption"><span>Shiprocket Copilot — AI assistant</span><span>2023 — 24</span></p>
         </div>
@@ -339,7 +491,7 @@
       </article>
 
       <!-- 06 · Agentic Component Library -->
-      <article class="work-row" aria-labelledby="p6-title">
+      <article class="work-row is-play" aria-labelledby="p6-title">
         <div class="work-figure" data-reveal="mask">
           <div class="figure-frame">
             <svg class="art" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
@@ -361,6 +513,118 @@
             </svg>
           </div>
           <p class="figure-caption"><span>Agentic Component Library — design system</span><span>2023 — 25</span></p>
+        </div>
+        <div class="work-play" data-reveal>
+          <div class="demo-frame is-stage-play">
+            <div class="play" data-demo="components" data-size="36">
+              <div class="play-bar">
+                <span class="play-name">Playground — the real components</span>
+                <div class="play-density" role="group" aria-label="Component density">
+                  <button type="button" data-density="28" aria-pressed="false">28px</button>
+                  <button type="button" data-density="36" aria-pressed="true">36px</button>
+                </div>
+              </div>
+
+              <div class="play-tabs" role="tablist" aria-label="Component groups">
+                <button type="button" role="tab" id="pt-buttons" aria-controls="pp-buttons" aria-selected="true">Buttons</button>
+                <button type="button" role="tab" id="pt-inputs" aria-controls="pp-inputs" aria-selected="false">Inputs</button>
+                <button type="button" role="tab" id="pt-select" aria-controls="pp-select" aria-selected="false">Select</button>
+                <button type="button" role="tab" id="pt-table" aria-controls="pp-table" aria-selected="false">Table</button>
+              </div>
+
+              <div class="play-canvas">
+                <div role="tabpanel" id="pp-buttons" aria-labelledby="pt-buttons" tabindex="0">
+                  <div class="play-row">
+                    <button type="button" class="c-btn is-primary">Create shipment</button>
+                    <button type="button" class="c-btn">Assign courier</button>
+                    <button type="button" class="c-btn is-ghost">Cancel</button>
+                    <button type="button" class="c-btn is-danger">Delete</button>
+                    <button type="button" class="c-btn" disabled>Unavailable</button>
+                  </div>
+                  <p class="play-legend">State ladder — every component ships all five</p>
+                  <div class="play-row is-ladder">
+                    <span class="c-btn">Default</span>
+                    <span class="c-btn is-hover">Hover</span>
+                    <span class="c-btn is-active">Active</span>
+                    <span class="c-btn is-selected">Selected</span>
+                    <span class="c-btn is-disabled">Disabled</span>
+                  </div>
+                </div>
+
+                <div role="tabpanel" id="pp-inputs" aria-labelledby="pt-inputs" tabindex="0" hidden>
+                  <div class="c-field">
+                    <label class="c-label" for="play-email">Notify on export</label>
+                    <input class="c-input" id="play-email" type="email" data-play-input
+                           placeholder="priya@acme.com" aria-describedby="play-email-msg" />
+                    <p class="c-msg" id="play-email-msg" data-play-input-msg data-tone="hint">We only use this to send the export.</p>
+                  </div>
+                  <p class="play-legend">Multi-select</p>
+                  <div class="play-row">
+                    <button type="button" class="c-chip" data-chip aria-pressed="true">Delivered</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="false">In transit</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="true">RTO</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="false">Cancelled</button>
+                  </div>
+                </div>
+
+                <div role="tabpanel" id="pp-select" aria-labelledby="pt-select" tabindex="0" hidden>
+                  <div class="c-field" data-play-select>
+                    <span class="c-label" id="play-select-label">Courier</span>
+                    <button type="button" class="c-select" aria-haspopup="listbox" aria-expanded="false"
+                            aria-labelledby="play-select-label">
+                      <span data-play-select-value>Delhivery Surface</span>
+                      <span aria-hidden="true">▾</span>
+                    </button>
+                    <ul class="c-listbox" role="listbox" aria-labelledby="play-select-label" hidden>
+                      <li role="option" aria-selected="true">Delhivery Surface</li>
+                      <li role="option" aria-selected="false">Bluedart Air</li>
+                      <li role="option" aria-selected="false">Ecom Express</li>
+                      <li role="option" aria-selected="false">Xpressbees</li>
+                    </ul>
+                  </div>
+                  <p class="play-legend">Date range — presets first, calendar second</p>
+                  <div class="play-row">
+                    <button type="button" class="c-chip" data-chip aria-pressed="true">Last 7 days</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="false">Last 30 days</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="false">This quarter</button>
+                    <button type="button" class="c-chip" data-chip aria-pressed="false">Custom…</button>
+                  </div>
+                </div>
+
+                <div role="tabpanel" id="pp-table" aria-labelledby="pt-table" tabindex="0" hidden>
+                  <div class="c-bulk" data-bulk-bar hidden>
+                    <span data-bulk-count>0 selected</span>
+                    <span class="c-bulk-actions">
+                      <button type="button" class="c-btn is-ghost">Export</button>
+                      <button type="button" class="c-btn is-ghost">Assign</button>
+                    </span>
+                  </div>
+                  <table class="c-table" data-play-table>
+                    <caption class="visually-hidden">Sample orders — selectable rows, sortable amount</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="c-th-check">
+                          <input type="checkbox" data-select-all aria-label="Select all rows" />
+                        </th>
+                        <th scope="col">Order</th>
+                        <th scope="col">City</th>
+                        <th scope="col" aria-sort="descending">
+                          <button type="button" data-sort aria-sort="descending">Amount <span aria-hidden="true">↕</span></button>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr data-value="4820"><td><input type="checkbox" data-select-row aria-label="Select order SR-88412" /></td><td>SR-88412</td><td>Bengaluru</td><td>₹4,820</td></tr>
+                      <tr data-value="3110"><td><input type="checkbox" data-select-row aria-label="Select order SR-88407" /></td><td>SR-88407</td><td>Pune</td><td>₹3,110</td></tr>
+                      <tr data-value="2640"><td><input type="checkbox" data-select-row aria-label="Select order SR-88399" /></td><td>SR-88399</td><td>Jaipur</td><td>₹2,640</td></tr>
+                      <tr data-value="1290"><td><input type="checkbox" data-select-row aria-label="Select order SR-88381" /></td><td>SR-88381</td><td>Kochi</td><td>₹1,290</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="figure-caption"><span>Try it — density, states, keyboard</span><span>Live components</span></p>
         </div>
         <div class="work-body">
           <span class="work-index">06</span>
@@ -416,28 +680,50 @@
       </article>
 
       <!-- 08 · Live Orders Dashboard -->
-      <article class="work-row" aria-labelledby="p8-title">
+      <article class="work-row is-board" aria-labelledby="p8-title">
         <div class="work-figure" data-reveal="mask">
-          <div class="figure-frame">
-            <svg class="art" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
-                 data-image-prompt="Cinematic long-exposure of a dark timing screen: horizontal light streaks of different lengths like a race leaderboard, one streak in warm champagne overtaking, motion blur, premium broadcast graphics, 8k">
-              <g class="a-faint">
-                <path d="M120 80 H580 M120 140 H580 M120 200 H580 M120 260 H580 M120 320 H580"/>
-              </g>
-              <rect class="a-fill" x="120" y="64" width="380" height="32" rx="2"/>
-              <rect class="a-fill" x="120" y="124" width="300" height="32" rx="2"/>
-              <g class="a-drift-2">
-                <rect class="a-warm a-pulse" x="120" y="184" width="430" height="32" rx="2"/>
-              </g>
-              <rect class="a-fill" x="120" y="244" width="240" height="32" rx="2"/>
-              <rect class="a-fill" x="120" y="304" width="190" height="32" rx="2"/>
-              <text class="a-label" x="70" y="84">P1</text>
-              <text class="a-label" x="70" y="144">P2</text>
-              <text class="a-label" x="70" y="204">P3 ▲</text>
-              <text class="a-label" x="70" y="264">P4</text>
-              <text class="a-label" x="70" y="324">P5</text>
-              <text class="a-label" x="120" y="368">LIVE RANKING · MOTOGP-INSPIRED · 60FPS</text>
-            </svg>
+          <div class="demo-frame is-stage-board">
+            <div class="board" data-demo="liveorders">
+              <div class="board-head">
+                <span class="board-name">Live Orders · rolling 60s</span>
+                <span class="board-live"><i aria-hidden="true"></i>streaming</span>
+              </div>
+
+              <ol class="board-list" data-board aria-label="Live order volume by city">
+                <li class="board-row" data-value="4820">
+                  <span class="board-pos" data-board-pos>01</span>
+                  <span class="board-city">Bengaluru</span>
+                  <span class="board-track"><i data-board-track></i></span>
+                  <span class="board-val" data-board-value>4,820</span>
+                </li>
+                <li class="board-row" data-value="4315">
+                  <span class="board-pos" data-board-pos>02</span>
+                  <span class="board-city">Mumbai</span>
+                  <span class="board-track"><i data-board-track></i></span>
+                  <span class="board-val" data-board-value>4,315</span>
+                </li>
+                <li class="board-row" data-value="3980">
+                  <span class="board-pos" data-board-pos>03</span>
+                  <span class="board-city">Delhi NCR</span>
+                  <span class="board-track"><i data-board-track></i></span>
+                  <span class="board-val" data-board-value>3,980</span>
+                </li>
+                <li class="board-row" data-value="3120">
+                  <span class="board-pos" data-board-pos>04</span>
+                  <span class="board-city">Hyderabad</span>
+                  <span class="board-track"><i data-board-track></i></span>
+                  <span class="board-val" data-board-value>3,120</span>
+                </li>
+                <li class="board-row" data-value="2640">
+                  <span class="board-pos" data-board-pos>05</span>
+                  <span class="board-city">Pune</span>
+                  <span class="board-track"><i data-board-track></i></span>
+                  <span class="board-val" data-board-value>2,640</span>
+                </li>
+              </ol>
+
+              <p class="board-note">Order is derived from the numbers. Places change with a real FLIP — the choreography that shipped.</p>
+            </div>
           </div>
           <p class="figure-caption"><span>Live Orders Dashboard — realtime leaderboard</span><span>2023</span></p>
         </div>
@@ -457,6 +743,51 @@
   </div>
 </section>
 
+<!-- ================= UX AUDIT ================= -->
+<!-- Placed directly after Selected Work: the proof has just landed, which is
+     the moment the offer is most believable. -->
+<section class="audit-band" aria-labelledby="band-title">
+  <div class="container">
+    <div class="band">
+      <div class="band-copy">
+        <p class="eyebrow" data-reveal>Working together · UX Audit</p>
+        <h2 class="band-title" id="band-title" data-split>I also audit products.</h2>
+        <p class="band-lede" data-reveal>
+          Independent UX reviews of complex SaaS products — hands-on expert review combined with
+          agentic exploration. You get a prioritised, evidence-backed backlog of what's broken, why
+          it matters and what to fix first. Not a slide deck.
+        </p>
+        <div class="band-actions" data-reveal>
+          <a class="btn-pill is-primary" data-magnetic href="/ux-audit" data-open-lead="home_band">Book a UX audit call</a>
+          <a class="btn-pill" data-magnetic href="/ux-audit" data-track="ux_audit_teaser_clicked">How it works <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="band-panel" data-reveal>
+        <div class="band-card">
+          <div class="band-card-bar">
+            <span>Product UX Audit</span>
+            <span class="band-tag">Sample</span>
+          </div>
+          <div class="band-card-body">
+            <div class="band-score">
+              <span class="band-score-k">UX health</span>
+              <span class="band-score-v"><b>71</b>/ 100</span>
+            </div>
+            <ul class="band-sev">
+              <li data-sev="critical"><i></i>Critical<b>08</b></li>
+              <li data-sev="high"><i></i>High<b>27</b></li>
+              <li data-sev="medium"><i></i>Medium<b>61</b></li>
+              <li data-sev="low"><i></i>Low<b>30</b></li>
+            </ul>
+          </div>
+          <p class="band-card-foot">126 findings across 17 categories &middot; sample data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= PHILOSOPHY ================= -->
 <section class="philosophy" id="philosophy" aria-labelledby="phil-title">
   <div class="container phil-intro">
@@ -469,31 +800,73 @@
       <span class="phil-index">01 / 06</span>
       <p class="phil-title" data-split>Beautiful products are <span class="serif-accent">engineered.</span></p>
       <p class="phil-sub" data-reveal>The polish you can see is a byproduct of decisions you can't — rendering budgets, data models, failure states, latency contracts.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-1">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-1" hidden>
+          <span class="phil-evidence-src">MeetAira</span>The character only felt alive once the streaming architecture held a spoken reply under a second.
+        </p>
+      </div>
     </div></div>
     <div class="phil-panel"><div class="container phil-panel-inner">
       <span class="phil-index">02 / 06</span>
       <p class="phil-title" data-split>Great UX begins long <span class="serif-accent">before</span> pixels.</p>
       <p class="phil-sub" data-reveal>In the problem statement, the data model, the latency budget. By the time a design file is opened, most of the experience is already decided.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-2">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-2" hidden>
+          <span class="phil-evidence-src">Shiprocket Trends</span>The SKU x city data model was the design decision. The dashboard was just its consequence.
+        </p>
+      </div>
     </div></div>
     <div class="phil-panel"><div class="container phil-panel-inner">
       <span class="phil-index">03 / 06</span>
       <p class="phil-title" data-split>Performance is a <span class="serif-accent">feature.</span></p>
       <p class="phil-sub" data-reveal>Users don't separate speed from quality. A hundred milliseconds is the difference between a tool and a toy.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-3">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-3" hidden>
+          <span class="phil-evidence-src">Shiprocket Trends</span>Tuned until the heaviest report felt instant — sellers stopped exporting to spreadsheets.
+        </p>
+      </div>
     </div></div>
     <div class="phil-panel"><div class="container phil-panel-inner">
       <span class="phil-index">04 / 06</span>
       <p class="phil-title" data-split>Animation must <span class="serif-accent">communicate.</span></p>
       <p class="phil-sub" data-reveal>Motion is information — what changed, where it went, what matters now. If it can't explain itself, it's decoration. Cut it.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-4">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-4" hidden>
+          <span class="phil-evidence-src">Live Orders</span>Positions move with a real FLIP, so you can see what overtook what. Nothing else on this page moves that much.
+        </p>
+      </div>
     </div></div>
     <div class="phil-panel"><div class="container phil-panel-inner">
       <span class="phil-index">05 / 06</span>
       <p class="phil-title" data-split>Complexity should <span class="serif-accent">disappear.</span></p>
       <p class="phil-sub" data-reveal>The hardest engineering is invisible — streaming, retries, reconciliation, recovery. What users receive is a product that simply feels certain.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-5">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-5" hidden>
+          <span class="phil-evidence-src">Shiprocket Copilot</span>Retries, tool guardrails and reconciliation all live behind one sentence of confirmation.
+        </p>
+      </div>
     </div></div>
     <div class="phil-panel"><div class="container phil-panel-inner">
       <span class="phil-index">06 / 06</span>
       <p class="phil-title" data-split>Users should never notice the <span class="serif-accent">engineering.</span></p>
       <p class="phil-sub" data-reveal>They should only notice that they finished.</p>
+      <div class="phil-evidence">
+        <button class="phil-evidence-btn" type="button" data-evidence-toggle
+                aria-expanded="false" aria-controls="phil-ev-6">Evidence <span aria-hidden="true">+</span></button>
+        <p class="phil-evidence-body" id="phil-ev-6" hidden>
+          <span class="phil-evidence-src">Angular Migration Framework</span>A decade of enterprise UI moved underneath users who never noticed a thing.
+        </p>
+      </div>
     </div></div>
   </div>
 </section>
@@ -619,9 +992,22 @@
         <p data-reveal>For seven years I've worked across the full surface of product — strategy, UX, frontend architecture, distributed backends, and the AI infrastructure underneath. Not because generalism is fashionable, but because the products I want to exist can't be built from inside one lane.</p>
         <p data-reveal>Right now that means AI-native products: voice companions, copilots that execute real work, platforms that make LLMs safe and affordable at company scale. The common thread — people should feel the product, never the machinery.</p>
       </div>
-      <figure class="portrait" data-reveal
+      <!-- Portrait: drop a B&W editorial frame at public/portrait.jpg (4:5, ≤200KB).
+           Until then the plate below stands on its own — see HANDOFF.md §4. -->
+      <figure class="portrait" data-portrait data-reveal
               data-image-prompt="Black and white editorial portrait of a software engineer in a minimal studio, Rembrandt lighting, dark charcoal backdrop, quiet confidence, shot on medium format, grain, Aesop-campaign aesthetic">
-        <figcaption class="portrait-note">Portrait — B&amp;W editorial · placeholder</figcaption>
+        <div class="portrait-plate">
+          <img src="/portrait.jpg" alt="Ashish Gupta" width="960" height="1200"
+               loading="lazy" decoding="async" />
+          <div class="portrait-mark" aria-hidden="true">
+            <span class="portrait-initials">AG</span>
+            <span class="portrait-rule"></span>
+          </div>
+        </div>
+        <figcaption class="portrait-meta">
+          <span>Ashish Gupta</span>
+          <span>Product Engineer</span>
+        </figcaption>
       </figure>
     </div>
 
@@ -670,12 +1056,31 @@
     </header>
 
     <ul class="lab-list">
-      <li class="lab-item" data-reveal style="--i:0">
+      <li class="lab-item is-runnable" data-reveal style="--i:0">
         <span class="lab-n">L·01</span>
         <span class="lab-name">Sub-second voice turn-taking
           <small>Interruption-aware duplex audio — the agent stops talking the instant you start.</small>
         </span>
-        <span class="lab-status">Exploring</span>
+        <span class="lab-actions">
+          <span class="lab-status">Exploring</span>
+          <button class="lab-run" type="button" data-lab-toggle aria-expanded="false" aria-controls="lab-voice">
+            <span data-lab-toggle-label>Open</span><span aria-hidden="true">→</span>
+          </button>
+        </span>
+        <div class="lab-panel" id="lab-voice" data-experiment="voice" hidden>
+          <div class="lab-panel-head">
+            <span class="lab-panel-title">Turn budget</span>
+            <span class="lab-total">first audio out <b data-voice-total>880 ms</b></span>
+          </div>
+          <ol class="voice-pipe">
+            <li data-voice-stage><span class="voice-step">Endpoint</span><span class="voice-ms" data-voice-ms></span></li>
+            <li data-voice-stage><span class="voice-step">STT</span><span class="voice-ms" data-voice-ms></span></li>
+            <li data-voice-stage><span class="voice-step">Model</span><span class="voice-ms" data-voice-ms></span></li>
+            <li data-voice-stage><span class="voice-step">TTS</span><span class="voice-ms" data-voice-ms></span></li>
+            <li data-voice-stage><span class="voice-step">Audio out</span><span class="voice-ms" data-voice-ms></span></li>
+          </ol>
+          <p class="lab-note">The latency budget the MeetAira pipeline is built against — a target it holds in production, not a live measurement of this page.</p>
+        </div>
       </li>
       <li class="lab-item" data-reveal style="--i:1">
         <span class="lab-n">L·02</span>
@@ -684,19 +1089,97 @@
         </span>
         <span class="lab-status is-live">Shipped · MeetAira</span>
       </li>
-      <li class="lab-item" data-reveal style="--i:2">
+      <li class="lab-item is-runnable" data-reveal style="--i:2">
         <span class="lab-n">L·03</span>
         <span class="lab-name">Prompt-diff CI
           <small>Regression tests for LLM behaviour — every prompt change runs against a golden conversation set before merge.</small>
         </span>
-        <span class="lab-status">Prototype</span>
+        <span class="lab-actions">
+          <span class="lab-status">Prototype</span>
+          <button class="lab-run" type="button" data-lab-toggle aria-expanded="false" aria-controls="lab-diff">
+            <span data-lab-toggle-label>Open</span><span aria-hidden="true">→</span>
+          </button>
+        </span>
+        <div class="lab-panel" id="lab-diff" data-experiment="prompt-diff" hidden>
+          <div class="lab-panel-head">
+            <span class="lab-panel-title">System prompt</span>
+            <span class="lab-seg" role="group" aria-label="Prompt version">
+              <button type="button" data-diff-version="v1" aria-pressed="false">v1</button>
+              <button type="button" data-diff-version="v2" aria-pressed="true">v2</button>
+            </span>
+          </div>
+
+          <div class="diff-grid">
+            <pre class="diff-code"><code><span class="d-same">You are a shipping assistant for a seller's own orders.</span>
+<span class="d-del">- Answer the question directly.</span>
+<span class="d-add">+ Never guess an order ID.</span>
+<span class="d-add">+ If more than one order matches, ask which one</span>
+<span class="d-add">+ before calling any tool.</span></code></pre>
+
+            <div class="diff-out">
+              <span class="diff-out-k">Same input · “when does my Bengaluru order ship?”</span>
+              <p data-diff-output="v1" hidden><b class="is-bad">v1</b> Your order SR-88412 ships tomorrow.</p>
+              <p data-diff-output="v2"><b class="is-good">v2</b> You have three open orders to Bengaluru — SR-88412, SR-88407 or SR-88399. Which one?</p>
+            </div>
+          </div>
+
+          <ul class="diff-stats">
+            <li><span>Wrong-order tool calls</span><b>12% → 0.4%</b></li>
+            <li><span>Clarifying questions</span><b>3% → 19%</b></li>
+            <li><span>Golden set pass</span><b>71% → 94%</b></li>
+          </ul>
+          <p class="lab-note">Illustrative numbers from the prototype's own golden set.</p>
+        </div>
       </li>
-      <li class="lab-item" data-reveal style="--i:3">
+      <li class="lab-item is-runnable" data-reveal style="--i:3">
         <span class="lab-n">L·04</span>
         <span class="lab-name">Generative UI
           <small>Interface components streamed from model output — layout as a first-class model capability.</small>
         </span>
-        <span class="lab-status">Exploring</span>
+        <span class="lab-actions">
+          <span class="lab-status">Exploring</span>
+          <button class="lab-run" type="button" data-lab-toggle aria-expanded="false" aria-controls="lab-gen">
+            <span data-lab-toggle-label>Open</span><span aria-hidden="true">→</span>
+          </button>
+        </span>
+        <div class="lab-panel" id="lab-gen" data-experiment="generative-ui" hidden>
+          <div class="lab-panel-head">
+            <span class="lab-prompt"><span aria-hidden="true">›</span> <em data-gen-echo></em></span>
+            <span class="lab-seg" role="group" aria-label="Rendered form">
+              <button type="button" data-gen-mode="table" aria-pressed="true">Table</button>
+              <button type="button" data-gen-mode="chart" aria-pressed="false">Chart</button>
+              <button type="button" data-gen-mode="summary" aria-pressed="false">Summary</button>
+            </span>
+          </div>
+
+          <div class="gen-view" data-gen-view="table">
+            <table class="gen-table">
+              <caption class="visually-hidden">Returns by city, last week</caption>
+              <thead><tr><th scope="col">City</th><th scope="col">Returns</th><th scope="col">Rate</th></tr></thead>
+              <tbody>
+                <tr><td>Bengaluru</td><td>214</td><td>4.4%</td></tr>
+                <tr><td>Pune</td><td>168</td><td>5.9%</td></tr>
+                <tr><td>Jaipur</td><td>121</td><td>8.2%</td></tr>
+                <tr><td>Kochi</td><td>96</td><td>3.1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="gen-view" data-gen-view="chart" hidden>
+            <ul class="gen-bars">
+              <li><span>Bengaluru</span><i style="--w:100%"></i><b>214</b></li>
+              <li><span>Pune</span><i style="--w:78%"></i><b>168</b></li>
+              <li><span>Jaipur</span><i style="--w:57%"></i><b>121</b></li>
+              <li><span>Kochi</span><i style="--w:45%"></i><b>96</b></li>
+            </ul>
+          </div>
+
+          <div class="gen-view" data-gen-view="summary" hidden>
+            <p class="gen-summary">Returns are concentrated in <b>Jaipur</b> — a third of Bengaluru's volume but nearly double the rate, at 8.2%. Bengaluru leads on absolute count only because it ships the most. The cost problem is Jaipur.</p>
+          </div>
+
+          <p class="lab-note">One response, three renderings — the model picks the component, not just the words.</p>
+        </div>
       </li>
       <li class="lab-item" data-reveal style="--i:4">
         <span class="lab-n">L·05</span>

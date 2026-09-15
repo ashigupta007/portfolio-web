@@ -238,6 +238,7 @@ button {
 }
 
 .wordmark {
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: var(--t-label);
   letter-spacing: 0.22em;
@@ -252,17 +253,38 @@ button {
   color: var(--ink-4);
   letter-spacing: 0.18em;
 }
-@media (max-width: 759px) { .wordmark em { display: none; } }
+@media (max-width: 999px) { .wordmark em { display: none; } }
 
 .nav-links {
   display: none;
-  gap: clamp(1.4rem, 2.4vw, 2.6rem);
+  gap: clamp(1.1rem, 2.2vw, 2.6rem);
   list-style: none;
 }
-@media (min-width: 760px) { .nav-links { display: flex; } .menu-btn { display: none; } }
+/* 1000px, not 760px: both navs now carry a CTA pill and neither fits below
+   this. Under it the desktop row wrapped mid-label, and a wrapped inline pill
+   paints its background per line box — which is what made the CTA look broken. */
+@media (min-width: 1000px) { .nav-links { display: flex; } .menu-btn { display: none; } }
+
+/* Below that the links move into the menu, but the CTA stays out on the bar.
+   Burying the one item that asks for something behind a hamburger would cost
+   more than the wrap did. */
+@media (max-width: 999px) {
+  .nav-inner { gap: 0.9rem; }
+  .nav-inner nav { margin-left: auto; }
+  .nav-links { display: flex; }
+  .nav-links li:not(.nav-cta-item) { display: none; }
+}
+
+/* three items on a 320px bar — tighten the tracking rather than drop anything */
+@media (max-width: 380px) {
+  .nav-inner { gap: 0.5rem; }
+  .wordmark { letter-spacing: 0.12em; }
+  .menu-btn { letter-spacing: 0.12em; }
+}
 
 .nav-link {
   position: relative;
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: var(--t-label);
   letter-spacing: 0.18em;

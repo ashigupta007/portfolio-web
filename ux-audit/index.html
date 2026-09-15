@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX Audit for SaaS Products — Ashish Gupta</title>
+  <meta name="description" content="Independent UX audits for complex SaaS products. Expert product review combined with agentic exploration to uncover workflow friction, inconsistencies and UX debt — delivered as a prioritised, engineering-ready backlog." />
+  <meta name="author" content="Ashish Gupta" />
+  <meta name="theme-color" content="#090909" />
+
+  <link rel="canonical" href="https://ashish-gupta.com/ux-audit" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ashish-gupta.com/ux-audit" />
+  <meta property="og:title" content="UX Audit for SaaS Products — Ashish Gupta" />
+  <meta property="og:description" content="Your product has UX problems your team has stopped noticing. Independent audits of complex SaaS products, delivered as a prioritised, evidence-backed backlog." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UX Audit for SaaS Products — Ashish Gupta" />
+  <meta name="twitter:description" content="Independent UX audits for complex SaaS products — expert review plus agentic exploration." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090909'/%3E%3Ccircle cx='24' cy='40' r='5' fill='%23c9b08a'/%3E%3Cpath d='M24 18 40 46M40 18v28' stroke='%23f2efe9' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Root-absolute, not relative: this page is served at /ux-audit with no
+       trailing slash, so "./audit.css" would resolve against / and 404. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ux-audit/audit.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "UX Audit for SaaS Products",
+    "serviceType": "UX audit and product usability review",
+    "description": "Independent UX audits of complex B2B SaaS products, combining expert product review with agentic exploration. Delivered as a prioritised, evidence-backed and engineering-ready backlog.",
+    "provider": {
+      "@type": "Person",
+      "name": "Ashish Gupta",
+      "jobTitle": "Product Engineer",
+      "url": "https://ashish-gupta.com/"
+    },
+    "areaServed": "Worldwide",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "B2B SaaS founders, product leaders and design leaders"
+    },
+    "offers": { "@type": "Offer", "priceCurrency": "INR", "url": "https://ashish-gupta.com/ux-audit" }
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) — same property as the portfolio, off the critical path -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-V2FZYFJESX");
+    (function () {
+      var loaded = false;
+      function loadGA() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-V2FZYFJESX";
+        document.head.appendChild(s);
+      }
+      addEventListener("scroll", loadGA, { once: true, passive: true });
+      addEventListener("pointerdown", loadGA, { once: true });
+      setTimeout(loadGA, 4000);
+    })();
+  </script>
+</head>
+<body class="audit-page">
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-nav" id="site-nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="/">Ashish Gupta <em>— Product Engineer</em></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#what">What's audited</a></li>
+        <li><a class="nav-link" href="#method">Method</a></li>
+        <li><a class="nav-link" href="#findings">Sample</a></li>
+        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li><a class="nav-link" href="/" data-track="ux_audit_portfolio_clicked">Portfolio <span aria-hidden="true">↗</span></a></li>
+        <li class="nav-cta-item"><a class="nav-link is-cta" href="#enquiry" data-open-lead="nav">Book a call</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menu-open" aria-haspopup="dialog">Menu</button>
+  </div>
+</header>
+
+<dialog class="menu" id="menu" aria-label="Site menu">
+  <div class="menu-inner">
+    <div class="menu-top">
+      <span class="wordmark">UX Audit</span>
+      <button class="cs-close" id="menu-close">Close</button>
+    </div>
+    <ul class="menu-list">
+      <li style="--i:0"><a class="menu-link" href="#what"><span>01</span>What's audited</a></li>
+      <li style="--i:1"><a class="menu-link" href="#method"><span>02</span>Method</a></li>
+      <li style="--i:2"><a class="menu-link" href="#findings"><span>03</span>Sample findings</a></li>
+      <li style="--i:3"><a class="menu-link" href="#pricing"><span>04</span>Pricing</a></li>
+      <li style="--i:4"><a class="menu-link" href="#faq"><span>05</span>FAQ</a></li>
+      <li style="--i:5"><a class="menu-link" href="#enquiry" data-open-lead="menu"><span>06</span>Book a call</a></li>
+    </ul>
+    <a class="menu-aside" href="/" data-track="ux_audit_portfolio_clicked">
+      <span>Ashish's portfolio</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</dialog>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="a-hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="a-hero-grid">
+      <div class="a-hero-copy">
+        <p class="eyebrow">Independent UX Audit · B2B SaaS</p>
+        <h1 class="a-hero-title" id="hero-title">
+          Your product has UX problems your team has <span class="serif-accent">stopped noticing.</span>
+        </h1>
+        <p class="a-hero-lede">
+          I independently audit complex SaaS products, combining hands-on expert review with agentic
+          exploration. The output isn't a UX presentation — it's a prioritised, evidence-backed,
+          engineering-ready backlog showing what's broken, why it matters, and what to fix first.
+        </p>
+
+        <div class="a-hero-actions">
+          <a class="btn-pill is-primary" data-magnetic href="#enquiry" data-open-lead="hero">Book a UX audit call</a>
+          <a class="btn-pill" data-magnetic href="#findings">See a sample finding</a>
+        </div>
+
+        <dl class="a-cred">
+          <div><dt>Experience</dt><dd>7 years building products</dd></div>
+          <div><dt>Shipped</dt><dd>20+ products, most of them operational SaaS</dd></div>
+          <div><dt>Built</dt><dd>Dashboards, design systems, enterprise workflows</dd></div>
+        </dl>
+      </div>
+
+      <!-- sample audit interface -->
+      <div class="a-hero-panel">
+        <div class="panel">
+          <div class="panel-bar">
+            <span class="panel-kind">Product UX Audit</span>
+            <span class="panel-tag">Sample audit</span>
+          </div>
+
+          <div class="panel-top">
+            <div class="scorec" data-score-compact-mount></div>
+            <div class="sev" data-severity-mount></div>
+          </div>
+
+          <div class="panel-finding" data-hero-finding-mount></div>
+        </div>
+        <p class="panel-note">Illustrative findings in the report's real format. Not a client's product, and not real data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT GETS AUDITED ================= -->
+<section class="a-section" id="what" aria-labelledby="what-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>01 — Coverage</p>
+        <h2 class="display" id="what-title" data-split>Seventeen ways a product quietly gets harder to use.</h2>
+      </div>
+      <p class="sec-note" data-reveal>Complex products don't fail in one place. They accumulate small contradictions across modules until the whole thing feels heavy. The audit works through every surface below, module by module.</p>
+    </header>
+
+    <div class="matrix" data-matrix-mount data-reveal></div>
+  </div>
+</section>
+
+<!-- ================= METHODOLOGY ================= -->
+<section class="a-section is-quiet" id="method" aria-labelledby="method-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>02 — Method</p>
+        <h2 class="display" id="method-title" data-split>Agents explore. A human decides.</h2>
+      </div>
+      <p class="sec-note" data-reveal>Systematic coverage is a machine problem. Judgement isn't. The two halves do different work, and only one of them signs off.</p>
+    </header>
+
+    <ol class="method">
+      <li class="method-step" data-reveal style="--i:0">
+        <span class="method-n">A</span>
+        <div>
+          <h3 class="method-h">Agentic exploration</h3>
+          <p class="method-p">A system works through the product methodically, in a way a person can't sustain across a hundred screens — and doesn't get bored on screen sixty.</p>
+          <ul class="method-list">
+            <li>Routes</li><li>States</li><li>Forms</li><li>Tables</li><li>Filters</li>
+            <li>Navigation</li><li>Responsive conditions</li><li>Common flows</li>
+            <li>Interaction states</li><li>Accessibility</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="method-step" data-reveal style="--i:1">
+        <span class="method-n">B</span>
+        <div>
+          <h3 class="method-h">Expert review</h3>
+          <p class="method-p">Everything the agent surfaces is then judged by a person who has built products like yours — because most of what a machine flags doesn't actually matter, and some of what matters most it never sees.</p>
+          <ul class="method-list">
+            <li>Business context</li><li>Workflow intent</li><li>Severity</li><li>User impact</li>
+            <li>Design consistency</li><li>Product logic</li><li>False positives</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="method-step" data-reveal style="--i:2">
+        <span class="method-n">C</span>
+        <div>
+          <h3 class="method-h">Verified findings</h3>
+          <p class="method-p">Every finding that reaches the report has been through a human. Each one carries its provenance, so you can weigh it accordingly.</p>
+          <ul class="method-sources">
+            <li><b>Human discovered</b><span>Found by review, in context</span></li>
+            <li><b>Automated discovered</b><span>Surfaced by systematic exploration</span></li>
+            <li><b>Automated → Human verified</b><span>Surfaced by the agent, confirmed and rated by me</span></li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+
+    <p class="method-caveat" data-reveal>No agent writes the final audit. Automation buys coverage and consistency; it doesn't buy judgement, and it isn't sold as if it does.</p>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="a-section" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>03 — Engagement</p>
+        <h2 class="display" id="process-title" data-split>Six steps, then it's finished.</h2>
+      </div>
+      <p class="sec-note" data-reveal>A defined shape with a defined end. One clarification round is included; after that the engagement closes and you own the output.</p>
+    </header>
+
+    <ol class="process">
+      <li class="process-step" data-reveal style="--i:0">
+        <span class="process-n">01</span>
+        <h3 class="process-h">Discovery</h3>
+        <p class="process-meta">30–45 minute intro call</p>
+        <p class="process-p">Who uses the product, what it does, which workflows carry the business, which modules matter, what you already suspect, what constrains you, and what you want the audit to settle.</p>
+      </li>
+      <li class="process-step" data-reveal style="--i:1">
+        <span class="process-n">02</span>
+        <h3 class="process-h">Scope</h3>
+        <p class="process-meta">Written before anything starts</p>
+        <p class="process-p">Surfaces, workflows, access requirements, timeline, deliverables, confidentiality and commercial terms — agreed and documented, so nothing about the engagement is a surprise.</p>
+      </li>
+      <li class="process-step" data-reveal style="--i:2">
+        <span class="process-n">03</span>
+        <h3 class="process-h">Audit</h3>
+        <p class="process-meta">The work itself</p>
+        <p class="process-p">Hands-on expert review across the agreed surfaces, with agentic exploration running underneath for coverage. Evidence is captured as findings are recorded, not reconstructed afterwards.</p>
+      </li>
+      <li class="process-step" data-reveal style="--i:3">
+        <span class="process-n">04</span>
+        <h3 class="process-h">Report</h3>
+        <p class="process-meta">The deliverable</p>
+        <p class="process-p">Prioritised findings, each with evidence, severity, user impact, implementation complexity and a specific recommendation — plus the executive summary and the patterns that repeat.</p>
+      </li>
+      <li class="process-step" data-reveal style="--i:4">
+        <span class="process-n">05</span>
+        <h3 class="process-h">Walkthrough</h3>
+        <p class="process-meta">Live, with your team</p>
+        <p class="process-p">We go through the highest-impact issues together, so the reasoning transfers to the people who'll act on it and the debate happens with me in the room.</p>
+      </li>
+      <li class="process-step" data-reveal style="--i:5">
+        <span class="process-n">06</span>
+        <h3 class="process-h">Iteration</h3>
+        <p class="process-meta">One round, included</p>
+        <p class="process-p">Your team challenges findings, asks for clarification, or flags context I didn't have. I revise accordingly. Then the engagement closes.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= DELIVERABLES ================= -->
+<section class="a-section is-quiet" id="deliverables" aria-labelledby="deliverables-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>04 — Deliverables</p>
+        <h2 class="display" id="deliverables-title" data-split>Written to be worked from, not admired.</h2>
+      </div>
+      <p class="sec-note" data-reveal>The test of an audit is whether a sprint can pick it up on Monday without a translation layer. Everything is written to that standard.</p>
+    </header>
+
+    <div class="deliver">
+      <div class="deliver-col" data-reveal style="--i:0">
+        <h3 class="deliver-h">Every finding carries</h3>
+        <ul class="deliver-list">
+          <li>Issue ID</li>
+          <li>Product / module</li>
+          <li>Workflow</li>
+          <li>Severity</li>
+          <li>UX category</li>
+          <li>Description of the problem</li>
+          <li>Evidence — screenshot or capture</li>
+          <li>Why it matters</li>
+          <li>A specific recommendation</li>
+          <li>User impact</li>
+          <li>Implementation complexity</li>
+          <li>Confidence</li>
+          <li>Discovery source</li>
+        </ul>
+      </div>
+      <div class="deliver-col" data-reveal style="--i:1">
+        <h3 class="deliver-h">And the report itself</h3>
+        <ul class="deliver-list">
+          <li>Executive summary</li>
+          <li>UX health score with a category breakdown</li>
+          <li>Priority matrix — impact against effort</li>
+          <li>Recurring patterns across modules</li>
+          <li>Top recommendations</li>
+          <li>Engineering-ready backlog</li>
+          <li>CSV export, optional</li>
+          <li>Jira-ready formatting, optional</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SAMPLE FINDINGS ================= -->
+<section class="a-section" id="findings" aria-labelledby="findings-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>05 — Sample</p>
+        <h2 class="display" id="findings-title" data-split>Five findings, in the format you'd receive them.</h2>
+      </div>
+      <p class="sec-note" data-reveal>These describe patterns common to operational SaaS products. They are written examples — not drawn from any client's product, and not real data. Open one to see the full record.</p>
+    </header>
+
+    <div class="findings" data-findings-mount data-reveal></div>
+  </div>
+</section>
+
+<!-- ================= SCORE + SEVERITY ================= -->
+<section class="a-section is-quiet" id="score" aria-labelledby="score-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>06 — Scoring</p>
+        <h2 class="display" id="score-title" data-split>One number for the room. Seven for the team.</h2>
+      </div>
+      <p class="sec-note" data-reveal>The headline score travels well in a board deck. The breakdown is what a product team actually plans against.</p>
+    </header>
+
+    <div class="score-block">
+      <div class="score" data-score-mount data-reveal></div>
+
+      <div class="sev-frame" data-reveal>
+        <h3 class="sev-h">How severity is decided</h3>
+        <p class="sev-basis">Severity weighs user impact against how often the workflow runs, how central it is to the product, and what it costs the business when it goes wrong.</p>
+        <dl class="sev-defs">
+          <div data-sev="critical"><dt>Critical</dt><dd>Users are misled, lose work, or cannot complete a core task. Fix before the next release.</dd></div>
+          <div data-sev="high"><dt>High</dt><dd>A frequent workflow is meaningfully harder or riskier than it needs to be.</dd></div>
+          <div data-sev="medium"><dt>Medium</dt><dd>Real friction with a workaround, or an inconsistency that will compound.</dd></div>
+          <div data-sev="low"><dt>Low</dt><dd>Polish, edge cases, and small breaks in the system's own rules.</dd></div>
+        </dl>
+        <p class="sev-honest">This is a consistent judgement, applied by one person across the whole product — not a formula. Anything that claims decimal-point precision on questions like these is selling arithmetic, not analysis.</p>
+      </div>
+    </div>
+
+    <p class="sample-flag" data-reveal>All scores and counts shown on this page are sample data.</p>
+  </div>
+</section>
+
+<!-- ================= WHY A PRODUCT ENGINEER ================= -->
+<section class="a-section" id="why" aria-labelledby="why-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>07 — Difference</p>
+        <h2 class="display" id="why-title" data-split>Most UX problems aren't visual problems.</h2>
+      </div>
+      <p class="sec-note" data-reveal>They're behavioural — and they're usually a consequence of how the frontend is built. Recognising that is the difference between a finding you can act on and a finding you can only agree with.</p>
+    </header>
+
+    <div class="why-grid">
+      <ul class="why-list" data-reveal>
+        <li>Components that behave differently in different modules</li>
+        <li>Permissions that expose actions the role can't perform</li>
+        <li>Filters that don't persist across navigation</li>
+        <li>Loading and error states that were never built</li>
+        <li>Controls that promise something the system doesn't do</li>
+        <li>States the interface allows but the product can't handle</li>
+        <li>Navigation that disagrees with the information architecture</li>
+        <li>Component reuse that quietly diverges over time</li>
+        <li>Client and server state drifting out of sync</li>
+        <li>Frontend architecture producing UX inconsistency by default</li>
+      </ul>
+
+      <div class="why-copy" data-reveal>
+        <p>I've spent seven years building these systems — design systems shipped to two frameworks, analytics products, realtime dashboards, enterprise workflows and the AI interfaces on top of them.</p>
+        <p>So when something is wrong, I can usually tell you the likely shape of the cause: a shared toolbar rendering a capability it shouldn't, state held in a component instead of the URL, an API returning per-row results the interface throws away.</p>
+        <p>That's what makes the backlog estimable. Your engineers get findings that already account for how the thing is probably built.</p>
+        <p class="why-limit">This doesn't replace your design team, and it isn't meant to. It's an outside read on a product they're too close to — which is the only kind of read they can't do themselves.</p>
+        <p class="why-link"><a href="/" data-track="ux_audit_portfolio_clicked">See the products behind this <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIT ================= -->
+<section class="a-section is-quiet" id="fit" aria-labelledby="fit-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>08 — Fit</p>
+        <h2 class="display" id="fit-title" data-split>Built for products with a lot going on.</h2>
+      </div>
+    </header>
+
+    <div class="fit">
+      <div class="fit-col" data-reveal style="--i:0">
+        <h3 class="fit-h">A strong fit</h3>
+        <ul class="fit-list">
+          <li>Complex B2B SaaS</li>
+          <li>Operational products</li>
+          <li>Dashboards and analytics</li>
+          <li>Admin systems</li>
+          <li>Internal tools with external customers</li>
+          <li>Workflow-heavy applications</li>
+          <li>Products that grew fast and accumulated UX debt</li>
+          <li>Teams preparing for a redesign</li>
+          <li>Teams who suspect usability problems but can't locate them</li>
+        </ul>
+      </div>
+      <div class="fit-col is-other" data-reveal style="--i:1">
+        <h3 class="fit-h">Someone else is better</h3>
+        <ul class="fit-list">
+          <li>Marketing websites</li>
+          <li>Brand-only projects</li>
+          <li>One-page landing pages</li>
+          <li>Work that needs a full design agency</li>
+        </ul>
+        <p class="fit-note">Not a judgement on the work — it's just a different craft. This practice is specialised in dense, operational software, and that specialisation is the whole value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="a-section" id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>09 — Engagements</p>
+        <h2 class="display" id="pricing-title" data-split>Scoped like consulting, because it is.</h2>
+      </div>
+      <p class="sec-note" data-reveal>Three shapes, as starting points. The right one usually becomes obvious in the first fifteen minutes of the intro call.</p>
+    </header>
+
+    <div data-pricing-mount data-reveal></div>
+  </div>
+</section>
+
+<!-- ================= CONFIDENTIALITY ================= -->
+<section class="a-section is-quiet" id="confidentiality" aria-labelledby="conf-title">
+  <div class="container">
+    <div class="conf">
+      <div class="conf-copy">
+        <p class="eyebrow" data-reveal>10 — Confidentiality</p>
+        <h2 class="conf-title" id="conf-title" data-split>Your product stays confidential.</h2>
+        <p class="conf-lede" data-reveal>Scope, confidentiality, IP ownership and payment terms are documented before any work begins. What's below is how I work — the agreement is what makes it binding.</p>
+      </div>
+      <ul class="conf-list" data-reveal>
+        <li>Engagements are NDA-friendly. Send yours, or I'll provide one.</li>
+        <li>Access is used solely for the agreed review, and for nothing else.</li>
+        <li>Dedicated test or audit accounts are strongly preferred over anyone's personal credentials.</li>
+        <li>A staging environment is preferred over production wherever one exists.</li>
+        <li>Sensitive production data shouldn't be provided unless the review genuinely requires it.</li>
+        <li>Reports stay private. Nothing about your product is published, shown or referenced without your explicit written permission.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ENQUIRY ================= -->
+<section class="a-section is-enquiry" id="enquiry" aria-labelledby="enquiry-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>11 — Start here</p>
+        <h2 class="display" id="enquiry-title" data-split>Tell me about the product.</h2>
+      </div>
+      <p class="sec-note" data-reveal>A few questions first, then you'll pick a time. The context means the call opens with your product rather than with introductions.</p>
+    </header>
+
+    <div class="enquiry" data-lead-scope>
+      <div id="audit-form-shell">
+        <!-- the form itself is mounted by src/lead/form.js so the modal and this
+             section can never drift apart -->
+        <div data-lead-form-mount></div>
+      </div>
+
+      <div class="f-success" id="audit-success" tabindex="-1" hidden>
+        <p class="eyebrow">Received</p>
+        <h3 class="f-success-h">Thanks — I've got the context.</h3>
+        <p class="f-success-p">I've read what you sent before we speak. Now choose a time for the intro call — 30 to 45 minutes, and we'll spend it on your product rather than on introductions.</p>
+      </div>
+
+      <aside class="enquiry-aside">
+        <h3 class="aside-h">What happens next</h3>
+        <ol class="aside-steps">
+          <li><b>You send this</b><span>It reaches me directly.</span></li>
+          <li><b>You pick a time</b><span>The calendar opens as soon as this is sent.</span></li>
+          <li><b>We talk for 30–45 minutes</b><span>Product, users, workflows, what's worrying you.</span></li>
+          <li><b>You get a scope and a quote</b><span>In writing, before anything starts.</span></li>
+        </ol>
+        <p class="aside-note">No newsletter, no drip sequence, no sales cadence. This form exists so the first call is useful.</p>
+      </aside>
+
+      <div class="booking" data-booking hidden>
+        <div class="booking-head">
+          <h3 class="booking-h">Choose a time for the intro call</h3>
+          <p class="booking-p">45 minutes. If nothing here works, reply to the confirmation email and we'll find a slot.</p>
+        </div>
+        <div class="booking-mount" data-calendly-mount>
+          <p class="booking-loading">Loading the calendar…</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="a-section is-quiet" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <header class="section-head">
+      <div>
+        <p class="eyebrow" data-reveal>12 — Questions</p>
+        <h2 class="display" id="faq-title" data-split>The ones that come up first.</h2>
+      </div>
+    </header>
+
+    <div class="faq" data-reveal>
+      <details class="faq-item">
+        <summary>How long does an audit take?</summary>
+        <p>It depends on scope — how many modules, how deep the workflows go, and how quickly access is arranged. A focused health check is short; a multi-module audit is not. The timeline is agreed on the intro call and written into the scope, so I'd rather commit to a real date then than quote a generic one now.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you need production access?</summary>
+        <p>Usually no. A staging environment or a dedicated test account is preferred, and is almost always enough. If a workflow genuinely can't be reviewed outside production, we agree that specifically and keep the access as narrow as possible.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can you sign an NDA?</summary>
+        <p>Yes — engagements are NDA-friendly. Send yours and I'll sign it, or I'll provide one. Confidentiality and IP ownership are settled in writing before the work begins either way.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Will you redesign the whole product?</summary>
+        <p>No. The deliverable is analysis, prioritisation and recommendations — what's wrong, why it matters, and what to do about it. Design work can be scoped separately if you want it, but it isn't what you're buying here, and conflating the two makes both worse.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do we get implementation guidance?</summary>
+        <p>Yes. Findings are written to be engineering-aware: where the likely cause is visible from the outside, the recommendation says so. That's the practical advantage of an audit run by someone who builds these systems.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can our team challenge findings?</summary>
+        <p>Please do. You have context I don't, and some findings will turn out to be deliberate decisions. One feedback and clarification round is included — I revise what needs revising and note what stands and why.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you use AI?</summary>
+        <p>Agentic systems assist with systematic exploration — routes, states, forms, tables, responsive conditions — because that's coverage work a person can't sustain across a large product. Every final finding is reviewed, rated and written by me. No agent signs off an audit.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can you audit mobile apps?</summary>
+        <p>Responsive and mobile web, yes — those are reviewed as part of any audit. Native iOS and Android app testing isn't currently offered, so if that's the core of what you need, I'd point you elsewhere rather than stretch to cover it.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="a-final" aria-labelledby="final-title">
+  <div class="container">
+    <h2 class="a-final-title" id="final-title" data-split>Your users already know where the friction is.</h2>
+    <p class="a-final-sub" data-reveal>Let's find it before they leave.</p>
+    <div class="a-final-actions">
+      <a class="btn-pill is-primary" data-magnetic href="#enquiry" data-open-lead="final">Book a UX audit call</a>
+      <a class="btn-pill" data-magnetic href="/" data-track="ux_audit_portfolio_clicked">View Ashish's work</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="container">
+  <div class="site-footer">
+    <span>© <span id="year">2026</span> Ashish Gupta</span>
+    <span>Independent UX audits for complex SaaS</span>
+    <span><a href="/">Portfolio</a></span>
+  </div>
+</footer>
+
+<script type="module" src="/src/audit/entry.js"></script>
+</body>
+</html>

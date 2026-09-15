@@ -1,0 +1,310 @@
+/* ============================================================
+   LEAD CAPTURE — shared by both pages
+
+   The enquiry form, the custom select, the modal that wraps
+   them, and the scheduling step. Imported from src/lead/form.js
+   so Vite folds it into whichever page's CSS bundle needs it —
+   no extra request on either.
+   ============================================================ */
+
+:root {
+  /* the one error tone; kept independent of the audit page's
+     severity palette so this file stands alone on the homepage */
+  --err: #d98d84;
+}
+
+/* ------------------------------------------------------------
+   1. NAV CTA — the one nav item that asks for something
+   ------------------------------------------------------------ */
+.nav-link.is-cta {
+  color: var(--bg);
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 0.62em 1.25em;
+  margin-left: 0.6rem;
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+.nav-link.is-cta::after { display: none; }
+.nav-link.is-cta:hover { background: var(--ink); color: var(--bg); }
+@media (max-width: 380px) {
+  .nav-link.is-cta { padding: 0.55em 0.85em; margin-left: 0; letter-spacing: 0.1em; }
+}
+
+/* ------------------------------------------------------------
+   2. FORM PRIMITIVES
+   ------------------------------------------------------------ */
+.f-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.3rem;
+}
+@media (min-width: 620px) { .f-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.lead-form { display: grid; gap: 1.5rem; }
+.f-field { display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+
+.f-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.f-req { color: var(--accent); }
+
+.f-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  transition: border-color 0.35s var(--ease-out), background-color 0.35s var(--ease-out);
+}
+.f-input::placeholder { color: var(--ink-4); }
+.f-input:hover { border-color: rgba(242, 239, 233, 0.26); }
+.f-input:focus { outline: none; border-color: var(--accent); background: var(--bg-3); }
+.f-textarea { resize: vertical; min-height: 7rem; line-height: 1.55; }
+
+.f-error { font-size: 0.85rem; color: var(--err); min-height: 0; }
+.f-error:empty { display: none; }
+.has-error .f-input { border-color: var(--err); }
+
+.f-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--ink-2);
+  font-size: 0.93rem;
+  line-height: 1.45;
+  padding: 0.35rem 0;
+  cursor: pointer;
+  min-height: 40px;
+  align-items: center;
+}
+.f-check input {
+  flex: 0 0 auto;
+  width: 17px; height: 17px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.f-consent { margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.f-consent .f-check { color: var(--ink-3); font-size: 0.92rem; }
+
+.f-submit {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+}
+.f-submit .btn-pill { border: 0; }
+.f-submit button[disabled] { opacity: 0.55; cursor: progress; }
+.f-status { color: var(--ink-3); font-size: 0.9rem; line-height: 1.55; max-width: 40ch; }
+.f-status a { color: var(--accent); border-bottom: 1px solid rgba(201, 176, 138, 0.35); }
+.is-sending .f-input { opacity: 0.6; pointer-events: none; }
+
+.booking {
+  margin-top: clamp(2.4rem, 5vh, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg-2);
+  overflow: hidden;
+  animation: lead-rise 0.6s var(--ease-out) both;
+}
+@keyframes lead-rise {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.booking-head { padding: clamp(1.4rem, 3vw, 2rem); border-bottom: 1px solid var(--line); }
+.booking-h { font-size: clamp(1.15rem, 2.2vw, 1.6rem); letter-spacing: -0.02em; }
+.booking-p { margin-top: 0.6rem; color: var(--ink-3); font-size: 0.95rem; }
+.booking-mount { min-height: 660px; }
+.booking-loading, .booking-fallback {
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 0.95rem;
+}
+.booking-fallback a { color: var(--accent); border-bottom: 1px solid rgba(201, 176, 138, 0.35); }
+.booking.is-booked .booking-head::after {
+  content: "Booked — check your email for the invite.";
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+/* ------------------------------------------------------------
+   3. CUSTOM SELECT
+   A real listbox. The native control renders OS chrome that
+   ignores every token on this page.
+   ------------------------------------------------------------ */
+.c-sel { position: relative; }
+
+.c-sel-btn {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--ink);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.35s var(--ease-out), background-color 0.35s var(--ease-out);
+}
+.c-sel-btn:hover { border-color: rgba(242, 239, 233, 0.26); }
+.c-sel.is-open .c-sel-btn,
+.c-sel-btn:focus-visible { outline: none; border-color: var(--accent); background: var(--bg-3); }
+.c-sel.is-empty .c-sel-value { color: var(--ink-4); }
+.has-error .c-sel-btn { border-color: var(--err); }
+
+.c-sel-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.c-sel-caret {
+  flex: 0 0 auto;
+  width: 7px; height: 7px;
+  border-right: 1px solid var(--ink-3);
+  border-bottom: 1px solid var(--ink-3);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.3s var(--ease-out);
+}
+.c-sel.is-open .c-sel-caret { transform: rotate(225deg) translate(-2px, -2px); }
+
+.c-sel-list {
+  position: absolute;
+  z-index: 20;
+  inset-inline: 0;
+  top: calc(100% + 6px);
+  max-height: 15rem;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0.3rem;
+  margin: 0;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.9);
+  outline: none;
+}
+.c-sel-list [role="option"] {
+  padding: 0.62rem 0.7rem;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.c-sel-list [role="option"].is-active { background: rgba(242, 239, 233, 0.07); color: var(--ink); }
+.c-sel-list [role="option"][aria-selected="true"] { color: var(--accent); }
+.c-sel-list [role="option"][aria-selected="true"]::after {
+  content: "✓";
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ------------------------------------------------------------
+   4. MODAL
+   ------------------------------------------------------------ */
+dialog.lead {
+  width: min(100vw - 2rem, 46rem);
+  max-height: min(90dvh, 50rem);
+  /* the global reset sets margin:0 on *, which overrides the UA's
+     `margin: auto` and pins a modal dialog to the top-left corner */
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: var(--bg-2);
+  color: var(--ink-2);
+  overflow: hidden;
+}
+dialog.lead::backdrop {
+  background: rgba(6, 6, 6, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.lead-inner {
+  position: relative;
+  max-height: inherit;
+  overflow-y: auto;
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+}
+.lead-close {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  padding: 0.6em 1em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+}
+.lead-close:hover { color: var(--ink); border-color: var(--line-2); }
+
+.lead-title {
+  margin-top: 0.8rem;
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  max-width: 20ch;
+  outline: none;
+}
+.lead-sub {
+  margin-top: 0.8rem;
+  margin-bottom: clamp(1.3rem, 2.4vh, 1.7rem);
+  color: var(--ink-3);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+/* Compacted inside the modal so the submit button stays above the fold on a
+   laptop — a conversion form whose only button needs scrolling to find is a
+   conversion form with a hole in it. The page's inline form keeps its room. */
+.lead .lead-form { gap: 1.15rem; }
+.lead .f-textarea { min-height: 5.4rem; }
+.lead .f-consent { margin-top: 0.9rem; padding-top: 1.1rem; }
+
+/* Six fields will not fit a 740px laptop, and shrinking them further would
+   just make the form unpleasant. So the submit row sticks to the bottom of
+   the scroll area instead: the ask is reachable at any viewport height. */
+.lead .f-submit {
+  position: sticky;
+  bottom: calc(clamp(1.6rem, 4vw, 2.8rem) * -1);
+  margin-top: 1rem;
+  padding-block: 1.1rem;
+  background: linear-gradient(180deg, rgba(13, 13, 12, 0), var(--bg-2) 34%);
+}
+
+.lead-done .booking { margin-top: 1.6rem; }
+.lead .booking { border-radius: 6px; }
+.lead .booking-mount { min-height: 620px; }
+
+@media (max-width: 620px) {
+  dialog.lead { width: 100vw; max-width: 100vw; max-height: 100dvh; border-radius: 0; border: 0; }
+  .lead-inner { max-height: 100dvh; padding-top: 4.2rem; }
+  .lead-close { top: 1rem; right: 1rem; }
+  .f-submit .btn-pill { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-sel-caret { transition: none; }
+}

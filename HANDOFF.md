@@ -413,3 +413,5 @@ numbers hardcoded in the source. Nothing ran, nothing was computed, there was no
 The panels now **disclose rather than perform**. L·01 renders its latency budget immediately, as a
 budget. L·03 (prompt diff) and L·04 (generative UI) genuinely switch real content, so they keep
 their disclosure. If a future experiment can't produce a real result, it doesn't get a button.
+
+

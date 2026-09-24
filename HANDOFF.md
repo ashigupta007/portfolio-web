@@ -494,3 +494,29 @@ What replaced them:
 
 If prices come back, add a `price` to each tier in `PRICING` and a row to render it — the table and
 the mobile cards both build from that one object.
+
+
+---
+
+## 17. Social preview cards
+
+Every page carries `og:image` and a `summary_large_image` Twitter card pointing at
+`public/og/<name>.png`. Before this, none of them had an image, so shared links rendered as blank
+cards.
+
+| Page | Image |
+|---|---|
+| `/` | `/og/home.png` |
+| `/ux-audit` | `/og/ux-audit.png` |
+| `/work/<slug>` | `/og/work-<slug>.png` |
+
+The images are generated, not designed by hand: `scripts/make-og.cjs` renders each card at
+1200x630 in headless Chrome from the site's own tokens — charcoal ground, champagne rule, the
+mono wordmark, the four severity dots. Edit the copy in that file and re-run it when a title or a
+project's essence changes. It needs `puppeteer-core` installed temporarily; it is deliberately not
+a project dependency, since the site itself still ships with `vite` as its only one.
+
+Two things worth keeping right:
+- **`og:image` must be an absolute URL.** Relative paths are ignored by most crawlers.
+- Keep `og:image:width`/`height` accurate (1200x630). Some platforms lay the card out from those
+  numbers before the image itself has downloaded.

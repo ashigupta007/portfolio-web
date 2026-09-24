@@ -11,28 +11,28 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Pricing — the single source for every price and every scope
-   promise on the page. The comparison table, the mobile cards and
-   the custom tier are all rendered from this.
+   Engagements — the single source for every scope promise on the
+   page. The comparison table, the mobile cards and the custom tier
+   are all rendered from this.
+
+   Deliberately no prices: a number shown before the scope is known
+   is either wrong or anchors the conversation in the wrong place.
+   Quoting happens after the intro call.
 
    A value of `true` renders as included, `false` as not included,
    and any string is shown as written.
    ------------------------------------------------------------ */
 export const PRICING = {
-  priceLabel: "Launch price",
-
   tiers: [
     {
       id: "health-check",
       name: "UX Health Check",
-      price: "₹10,000",
       bestFor: "One problematic journey",
       cta: "Start with a Health Check",
     },
     {
       id: "product-audit",
       name: "Product UX Audit",
-      price: "₹40,000",
       bestFor: "A full SaaS product review",
       cta: "Book a Product UX Audit",
       featured: true,
@@ -77,13 +77,12 @@ export const PRICING = {
   custom: {
     name: "Deep Product Audit",
     summary: "Beyond five workflows, or products with complex roles, permissions and multi-tenant surfaces.",
-    price: "Custom scope",
     cta: "Talk about a larger scope",
   },
 };
 
 export const PRICING_NOTE =
-  "Launch prices. Scope, deliverables and payment terms are confirmed in writing before any work starts.";
+  "Every engagement is quoted after the intro call, once the scope is real — how many workflows, how complex the product, what access is needed. Scope, deliverables, timeline and payment terms are all agreed in writing before any work starts.";
 
 /* ------------------------------------------------------------
    Sample audit — clearly illustrative, never a real client

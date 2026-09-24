@@ -223,7 +223,7 @@ These came from the brief + the previous site; confirm or edit in `index.html`:
 - "Senior Product Engineer, AI — Shiprocket" title wording
 - Impact numbers: ~80% (Trends), 10K+ queries/mo (Copilot), 70% tool-resolution, top-5 hackathon
 - Resume Google Drive link + Calendly link (carried over from the old site)
-- Pricing on `/ux-audit` — `PRICING` in `src/audit/config.js` is the only place it lives
+- Engagement scopes on `/ux-audit` — `PRICING` in `src/audit/config.js` is the only place they live
 - Credibility line "7 years · 20+ products shipped", repeated in the audit hero
 
 ## 9. Repo cleanup — done (2026-07-13)
@@ -316,7 +316,7 @@ the other.
 | `FORMSPREE_ID` | `src/lead/config.js` | `meaqydwv` — the last segment of `https://formspree.io/f/meaqydwv`. Leads are managed from the Formspree dashboard. **Emptying it is safe**: the form still validates and, on submit, tells the visitor to email `FALLBACK_EMAIL` rather than failing silently. |
 | `SCHEDULING.url` | `src/lead/config.js` | `calendly.com/love4css/product-ux-review-intro-call` — the dedicated 45-minute "Product UX Review — Intro Call" event. Keep `SCHEDULING.duration` in step with the event; it's printed above the embedded calendar. The homepage Contact section intentionally still links the separate hiring-conversation event. |
 | `FALLBACK_EMAIL` | `src/lead/config.js` | Where enquiries go if the form is unavailable. |
-| `PRICING` | `src/audit/config.js` | The only place prices **and scope promises** live: `tiers` (name, price, best-for, CTA), `groups` of comparison rows (`true` = included, `false` = not included, a string is shown as written) and the `custom` tier. It renders as a comparison `<table>` from 880px and one card per tier below that. The process step, FAQ and deliverables copy on `/ux-audit` restate the tier differences in prose — change those too if a tier's revision, walkthrough or report contents change. |
+| `PRICING` | `src/audit/config.js` | Every scope promise on `/ux-audit`: `tiers` (name, best-for, CTA), `groups` of comparison rows (`true` = included, `false` = not included, a string is shown as written) and the `custom` tier. Renders as a comparison `<table>` from 880px and one card per tier below. **No prices** — see §16. |
 | `AUTO_OPEN` | `src/lead/config.js` | Modal auto-open thresholds — see §13. |
 
 Neither integration value is a secret: a Formspree form id is a public endpoint by design, and the
@@ -338,9 +338,9 @@ A commercial page, not a portfolio page. Same tokens and motion system, tuned de
 - **Every number is sample data** and labelled as such: the hero panel carries a "Sample audit" pill
   and a disclaimer, and the scoring section repeats it. There are **no testimonials, client logos or
   outcome claims anywhere** — none exist yet, so none are shown.
-- **Pricing lives only in `PRICING`** (`src/audit/config.js`). Change it there; the cards and the
-  note re-render from it. The JSON-LD in `<head>` deliberately does *not* repeat prices, so it can
-  never go stale against the config.
+- **The page shows no prices.** A number quoted before the scope is known is either wrong or anchors the
+  conversation in the wrong place, so `/ux-audit` describes what each engagement *includes* and says the
+  quote follows the intro call. The JSON-LD carries no `offers` block for the same reason.
 - **Funnel events**: `ux_audit_page_view`, `ux_audit_sample_viewed`, `ux_audit_form_started`,
   `ux_audit_form_submitted`, `ux_audit_form_error`, `ux_audit_booking_started`,
   `ux_audit_booking_completed`, `ux_audit_portfolio_clicked`, plus `ux_audit_nav_clicked` /
@@ -405,6 +405,13 @@ To change the cadence, edit `AUTO_OPEN`. To disable auto-open entirely, set `aft
   when a dialog opened on its own.
 - `close()` is not gated on its exit animation; a cancelled or never-settling `finished` would
   otherwise trap the visitor.
+- **`.booking-mount` must have a real `height`, never just `min-height`.** Calendly's iframe is
+  `height: 100%`, and a percentage height only resolves against a parent with a *definite* height.
+  With `min-height` it silently fell back to the browser's default 150px — a sliver showing the
+  event name and no calendar, on every screen size. Stubbing Calendly out in a test hides this;
+  load the real widget and measure the iframe.
+- In the modal on a phone the calendar takes the rest of the dialog and `revealBooking()` scrolls it
+  to the top, so the visitor lands on the dates instead of the confirmation copy.
 - `dialog.lead` sets `margin: auto` explicitly. The global reset's `margin: 0` on `*` overrides the
   UA stylesheet rule that centres a modal dialog, which pins it to the top-left corner.
 
@@ -468,3 +475,22 @@ partial**: a missed include then costs the page its nav, not every one of its st
 
 **Asset paths stay root-absolute** (`/styles.css`, `/work/case.css`, `/src/case/entry.js`), for the
 same reason as `/ux-audit`: the pages are served without a trailing slash.
+
+
+---
+
+## 16. Pricing is deliberately absent
+
+`/ux-audit` used to show launch prices (₹10,000 / ₹40,000). They were removed: quoting before the
+scope is known either misprices the work or anchors the conversation on the wrong number.
+
+What replaced them:
+- The comparison table still carries every **scope promise** — workflows, findings, what's reviewed,
+  what the report includes, walkthrough length, revisions, payment split. That's what a buyer needs
+  to tell the two engagements apart.
+- The note under the table says the quote follows the intro call, once the scope is real.
+- The section is labelled **Engagements** in the nav and menu, not Pricing.
+- The `Service` JSON-LD has no `offers` block, so search results can't show a stale figure.
+
+If prices come back, add a `price` to each tier in `PRICING` and a row to render it — the table and
+the mobile cards both build from that one object.

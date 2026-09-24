@@ -177,7 +177,7 @@ const cell = (value) =>
 const leadSource = (id) => `pricing_${id.replace(/-/g, "_")}`;
 
 function pricingTable() {
-  const { tiers, groups, priceLabel } = PRICING;
+  const { tiers, groups } = PRICING;
   const feat = (t) => (t.featured ? " is-featured" : "");
 
   return `
@@ -191,10 +191,6 @@ function pricingTable() {
           </tr>
         </thead>
         <tbody>
-          <tr class="pt-price-row">
-            <th scope="row">${esc(priceLabel)}</th>
-            ${tiers.map((t) => `<td class="${feat(t).trim()}"><span class="pt-price">${esc(t.price)}</span></td>`).join("")}
-          </tr>
           <tr class="pt-best-row">
             <th scope="row">Best for</th>
             ${tiers.map((t) => `<td class="${feat(t).trim()}">${esc(t.bestFor)}</td>`).join("")}
@@ -236,7 +232,7 @@ function pricingTable() {
 }
 
 function pricingCards() {
-  const { tiers, groups, priceLabel } = PRICING;
+  const { tiers, groups } = PRICING;
   return `
     <div class="pc-list">
       ${tiers
@@ -244,8 +240,6 @@ function pricingCards() {
           (t, i) => `
         <article class="pc${t.featured ? " is-featured" : ""}">
           <h3 class="pc-name">${esc(t.name)}</h3>
-          <p class="pc-label">${esc(priceLabel)}</p>
-          <p class="pc-price">${esc(t.price)}</p>
           <p class="pc-best">Best for ${esc(t.bestFor.charAt(0).toLowerCase() + t.bestFor.slice(1))}</p>
           ${groups
             .map(
@@ -282,7 +276,6 @@ function renderPricing(mount) {
         <p class="pt-custom-summary">${esc(custom.summary)}</p>
       </div>
       <div class="pt-custom-side">
-        <span class="pt-custom-price">${esc(custom.price)}</span>
         <a class="btn-pill" href="#enquiry" data-open-lead="pricing_deep_audit">${esc(custom.cta)}</a>
       </div>
     </article>

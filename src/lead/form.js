@@ -236,10 +236,11 @@ export function initLeadForm(form, onSuccess) {
     if (status) status.textContent = "Sending your details…";
 
     try {
+      const payload = payloadOf(form);
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payloadOf(form)),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -249,7 +250,7 @@ export function initLeadForm(form, onSuccess) {
 
       track("ux_audit_form_submitted", { source: form.dataset.leadSource || "page" });
       onSuccess?.();
-      revealBooking(form.closest("[data-lead-scope]") ?? document);
+      revealBooking(form.closest("[data-lead-scope]") ?? document, payload);
     } catch (error) {
       // values are untouched — the form is never cleared on failure
       sending = false;

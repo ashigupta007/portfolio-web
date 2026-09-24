@@ -48,6 +48,17 @@ export const FALLBACK_EMAIL = "love4css@gmail.com";
 export const SCHEDULING = {
   url: "https://calendly.com/love4css/product-ux-review-intro-call",
   duration: "45 minutes",
+
+  /**
+   * Calendly matches `customAnswers` to an event type's custom questions by
+   * position — "a1" is the first one. On this event that's Calendly's default
+   * "Please share anything that will help prepare for our meeting", which the
+   * product URL and the stated concern answer exactly.
+   *
+   * Set it to null if the event type ever has no custom questions: sending an
+   * answer to a question that doesn't exist is the one way this can misfire.
+   */
+  customQuestion: "a1",
 };
 
 /* ------------------------------------------------------------

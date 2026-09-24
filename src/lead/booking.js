@@ -1,5 +1,6 @@
 import { SCHEDULING } from "./config.js";
 import { track } from "../core/analytics.js";
+import { reduceMotion } from "../core/motion.js";
 
 /* ============================================================
    INTRO CALL — scheduling.
@@ -17,6 +18,8 @@ function themedUrl() {
   const url = new URL(SCHEDULING.url);
   url.searchParams.set("hide_gdpr_banner", "1");
   url.searchParams.set("hide_landing_page_details", "1");
+  // our own heading already says what this is and how long it takes
+  url.searchParams.set("hide_event_type_details", "1");
   url.searchParams.set("background_color", "0d0d0c");
   url.searchParams.set("text_color", "f2efe9");
   url.searchParams.set("primary_color", "c9b08a");
@@ -41,10 +44,44 @@ function loadScript() {
   });
 }
 
+/**
+ * What the visitor just typed into our form, handed to Calendly so the
+ * "Enter Details" step is already filled in. Asking for a name and email
+ * twice in one flow is the weakest point in a booking journey.
+ */
+function prefillFrom(lead) {
+  if (!lead) return {};
+  const prefill = {};
+  if (lead.name) prefill.name = lead.name;
+  if (lead.email) prefill.email = lead.email;
+
+  const question = SCHEDULING.customQuestion;
+  const context = [lead.productUrl, lead.primaryConcern].filter(Boolean).join(" — ");
+  if (question && context) prefill.customAnswers = { [question]: context };
+
+  return prefill;
+}
+
+/**
+ * Which CTA produced this booking, readable in Calendly on the invite itself:
+ * hero, a pricing tier, the nav, or the modal opening on its own.
+ */
+function utmFrom(lead) {
+  return {
+    utmSource: "ashish-gupta.com",
+    utmMedium: location.pathname.startsWith("/ux-audit") ? "ux-audit" : "portfolio",
+    utmCampaign: "ux-audit-intro-call",
+    utmContent: lead?.source || "unknown",
+  };
+}
+
 const started = new WeakSet();
 
-/** @param {ParentNode} scope container holding the booking block */
-export async function revealBooking(scope = document) {
+/**
+ * @param {ParentNode} scope container holding the booking block
+ * @param {object} [lead] the submitted form values, used to prefill Calendly
+ */
+export async function revealBooking(scope = document, lead = null) {
   const block = scope.querySelector("[data-booking]");
   const mount = block?.querySelector("[data-calendly-mount]");
   if (!block || !mount) return;
@@ -59,7 +96,22 @@ export async function revealBooking(scope = document) {
     await loadScript();
     if (!window.Calendly) throw new Error("Calendly unavailable");
     mount.replaceChildren();
-    window.Calendly.initInlineWidget({ url: themedUrl(), parentElement: mount });
+    window.Calendly.initInlineWidget({
+      url: themedUrl(),
+      parentElement: mount,
+      prefill: prefillFrom(lead),
+      utm: utmFrom(lead),
+    });
+
+    // In the modal the calendar sits below the confirmation copy; on a phone
+    // that leaves it mostly offscreen. Bring it up so the dates are what the
+    // visitor sees. Only in the dialog — on the page, the "Thanks" message
+    // has just been scrolled into view deliberately.
+    if (block.closest("dialog")) {
+      requestAnimationFrame(() =>
+        block.scrollIntoView({ block: "start", behavior: reduceMotion.matches ? "auto" : "smooth" })
+      );
+    }
   } catch {
     // the scheduler is third-party; if it can't load, the visitor still gets
     // a working link rather than an empty box
